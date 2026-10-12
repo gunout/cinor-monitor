@@ -345,8 +345,8 @@ let DATA = null;
 const CHARTS = {};
 const DASH = () => document.getElementById('dashboard');
 
-const ICONS = {overview:'📊',transport:'🚌',air:'🌿',habitat:'🏘️',sante:'🏥',emploi:'🏗️',sports:'🏃',caf:'💰',social:'👥',analyse:'📈',gouvernance:'🏛️',about:'ℹ️'};
-const LABELS = {overview:"Vue d'ensemble",transport:'Transport',air:'Qualité air',habitat:'Habitat',sante:'Santé',emploi:'Emploi',sports:'Sports',caf:'CAF',social:'Social',analyse:'Analyse',gouvernance:'Gouvernance',about:'À propos'};
+const ICONS = {overview:'📊',transport:'🚌',air:'🌿',habitat:'🏘️',sante:'🏥',emploi:'🏗️',sports:'🏃',finances:'💶',caf:'💰',social:'👥',analyse:'📈',gouvernance:'🏛️',about:'ℹ️'};
+const LABELS = {overview:"Vue d'ensemble",transport:'Transport',air:'Qualité air',habitat:'Habitat',sante:'Santé',emploi:'Emploi',sports:'Sports',finances:'Finances',caf:'CAF',social:'Social',analyse:'Analyse',gouvernance:'Gouvernance',about:'À propos'};
 
 function renderKPI(c, {value, label, evolution, source}){
   const card = document.createElement('div');
@@ -946,6 +946,52 @@ async function moduleSports(c){
 /* ============================================================
    MODULE CAF
    ============================================================ */
+
+async function moduleFinances(c){
+  try {
+    const data = await fetch('data-json/finances.json', { cache: 'force-cache' }).then(r => r.json());
+    const ind = data.indicateurs_cles || {};
+    const series = data.series_temporelles || {};
+    const exos = data.meta?.exercices_disponibles || [];
+
+    let html = '<div class="overview-grid">';
+    html += '<div class="card" style="grid-column:1/-1">';
+    html += '<div class="work-title"><span class="ic">💶</span><span>Indicateurs financiers clés — 2025</span></div>';
+    html += '<div class="work-sub">Source : OFGL — Périmètre GFP consolidé (CINOR + communes membres)</div>';
+    html += '</div>';
+
+    Object.entries(ind).forEach(([agr, v]) => {
+      const evo = v.evolution_pct;
+      const evoColor = evo === null ? 'var(--text-2)' : (evo >= 0 ? 'var(--green)' : 'var(--red)');
+      const evoTxt = evo === null ? '—' : ((evo >= 0 ? '+' : '') + evo.toFixed(1) + '%');
+      html += '<div class="overview-card">';
+      html += '<span class="ico">📊</span>';
+      html += '<div class="val">' + v.valeur_2025 + ' M€</div>';
+      html += '<div class="lbl">' + agr + '</div>';
+      html += '<div style="font-family:var(--font-mono);font-size:10px;color:' + evoColor + ';margin-top:6px">' + evoTxt + ' vs 2024 · ' + v.euros_par_habitant_2025 + ' €/hab</div>';
+      html += '</div>';
+    });
+    html += '</div>';
+
+    html += '<div class="card" style="grid-column:1/-1;margin-top:16px">';
+    html += '<div class="work-title"><span class="ic">📈</span><span>Séries temporelles ' + exos[exos.length-1] + ' → ' + exos[0] + ' (M€)</span></div>';
+    html += '<table><thead><tr><th>Agrégat</th>';
+    exos.forEach(e => { html += '<th>' + e + '</th>'; });
+    html += '</tr></thead><tbody>';
+    Object.entries(series).forEach(([agr, vals]) => {
+      html += '<tr><td>' + agr + '</td>';
+      exos.forEach(e => { html += '<td>' + (vals[e] ?? '—') + '</td>'; });
+      html += '</tr>';
+    });
+    html += '</tbody></table></div>';
+
+    c.innerHTML = html;
+  } catch(e) {
+    c.innerHTML = '<div class="error">Erreur Finances : ' + e.message + '</div>';
+  }
+}
+
+
 async function moduleCaf(c){
   try {
     const enriched = window.CINOR_ENRICHED?.caf || {};
@@ -1240,7 +1286,7 @@ async function moduleAbout(c){
 }
 
 /* ============ NAV ============ */
-const MODULES = {overview:moduleOverview,transport:moduleTransport,air:moduleAir,habitat:moduleHabitat,sante:moduleSante,emploi:moduleEmploi,sports:moduleSports,caf:moduleCaf,social:moduleSocial,analyse:moduleAnalyse,gouvernance:moduleGouvernance,about:moduleAbout};
+const MODULES = {overview:moduleOverview,transport:moduleTransport,air:moduleAir,habitat:moduleHabitat,sante:moduleSante,emploi:moduleEmploi,sports:moduleSports,finances:moduleFinances,caf:moduleCaf,social:moduleSocial,analyse:moduleAnalyse,gouvernance:moduleGouvernance,about:moduleAbout};
 
 function buildNav(){
   const nav = document.getElementById('tabs');
