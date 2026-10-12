@@ -1,5 +1,6 @@
-# 🎯 Cinor Monitor
-
+<div align="center">
+## 🎯 Cinor Monitor
+</div>
 [![Stars](https://img.shields.io/github/stars/gunout/cinor-monitor?style=for-the-badge&logo=github&color=yellow)](https://github.com/gunout/cinor-monitor/stargazers)
 [![Forks](https://img.shields.io/github/forks/gunout/cinor-monitor?style=for-the-badge&logo=github&color=blue)](https://github.com/gunout/cinor-monitor/network/members)
 [![Issues](https://img.shields.io/github/issues/gunout/cinor-monitor?style=for-the-badge&logo=github&color=red)](https://github.com/gunout/cinor-monitor/issues)
