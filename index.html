@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<link rel="icon" href="data:,">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🇷🇪 CINOR Monitor</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg-0:#050810;--bg-1:#0a0f1a;--bg-2:#0f1624;--bg-3:#151f30;--border:#1c2940;--text-0:#e6f1ff;--text-1:#8ba3c7;--text-2:#4a5f7f;--cyan:#00e5ff;--green:#00ff88;--amber:#ffb800;--red:#ff3b3b;--purple:#a855f7;--font-mono:'JetBrains Mono',monospace;--font-sans:'Inter',sans-serif}
+body{font-family:var(--font-sans);background:var(--bg-0);color:var(--text-0);font-size:13px;line-height:1.5}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--bg-1)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+.topbar{min-height:54px;background:linear-gradient(180deg,#0a0f1a,#050810);border-bottom:1px solid var(--border);padding:8px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;position:sticky;top:0;z-index:100}
+.brand{font-family:var(--font-mono);font-size:14px;font-weight:700;color:var(--cyan);display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.brand .sub{color:var(--text-2);font-weight:400;font-size:11px}
+.topbar-right{margin-left:auto;display:flex;gap:12px;font-family:var(--font-mono);font-size:11px;align-items:center;flex-wrap:wrap}
+.stat{display:flex;gap:5px;color:var(--text-1);align-items:center}
+.stat .val{color:var(--cyan);font-weight:700}
+.stat .val.green{color:var(--green)}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;width:100%;padding-top:4px}
+.tab{background:transparent;border:none;color:var(--text-1);font-family:var(--font-mono);font-size:11px;font-weight:600;padding:8px 12px;border-radius:4px;cursor:pointer;transition:all .15s}
+.tab:hover{background:var(--bg-2);color:var(--text-0)}
+.tab.active{background:var(--bg-3);color:var(--cyan);box-shadow:inset 0 -2px 0 var(--cyan)}
+.app{display:grid;grid-template-columns:260px 1fr 280px;height:calc(100vh - 100px);overflow:hidden}
+@media(max-width:1200px){.app{grid-template-columns:220px 1fr 240px}}
+@media(max-width:900px){.app{display:flex;flex-direction:column;height:auto}.sidebar,.center,.right{width:100%}}
+.sidebar{background:var(--bg-1);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+.sb-head{padding:14px 16px;border-bottom:1px solid var(--border);background:var(--bg-2)}
+.sb-title{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:1.2px;display:flex;align-items:center;gap:8px}
+.sb-title::before{content:'';width:3px;height:12px;background:var(--green)}
+.sb-count{font-family:var(--font-mono);font-size:11px;color:var(--text-2);margin-top:6px}
+.sb-list{flex:1;overflow-y:auto;padding:8px}
+.sb-item{background:var(--bg-2);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:6px;padding:10px 12px;margin-bottom:5px;cursor:pointer;transition:all .15s}
+.sb-item:hover{border-color:var(--cyan);border-left-color:var(--cyan);background:var(--bg-3);transform:translateX(2px)}
+.sb-item.active{border-color:var(--cyan);border-left-color:var(--cyan);background:var(--bg-3)}
+.sb-item-h{display:flex;align-items:center;gap:8px}
+.sb-item-icon{font-size:16px}
+.sb-item-name{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--text-0);flex:1}
+.center{background:var(--bg-0);display:flex;flex-direction:column;overflow:hidden}
+.work-bar{padding:12px 16px;background:var(--bg-1);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.work-title{font-family:var(--font-mono);font-size:15px;font-weight:700;color:var(--text-0);display:flex;align-items:center;gap:8px}
+.work-title .ic{font-size:20px}
+.work-sub{font-family:var(--font-mono);font-size:10.5px;color:var(--text-2);margin-top:4px}
+.wb-btn{font-family:var(--font-mono);font-size:11px;font-weight:700;padding:7px 12px;border-radius:5px;cursor:pointer;background:var(--cyan);color:var(--bg-0);border:none}
+#dashboard{flex:1;overflow-y:auto;padding:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(460px,1fr));gap:16px;align-content:start}
+@media(max-width:1200px){#dashboard{grid-template-columns:1fr}}
+.card{background:var(--bg-1);border:1px solid var(--border);border-radius:8px;padding:18px;min-height:130px;display:flex;flex-direction:column}
+.card h3{font-family:var(--font-mono);font-size:11.5px;font-weight:700;color:var(--cyan);text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid var(--border);gap:8px}
+.card h3 .source{font-size:9.5px;color:var(--text-2);font-weight:500;text-transform:none}
+.kpi{font-family:var(--font-mono);font-size:36px;font-weight:800;color:var(--cyan);line-height:1;letter-spacing:-1.5px;text-shadow:0 0 24px rgba(0,229,255,.45)}
+.kpi-evolution{font-family:var(--font-mono);font-size:11px;color:var(--green);margin-top:6px}
+.overview-grid{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.overview-card{background:var(--bg-1);border:1px solid var(--border);border-radius:8px;padding:16px;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+.overview-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--green);transition:all .2s}
+.overview-card:hover{border-color:var(--cyan);transform:translateY(-3px);box-shadow:0 6px 28px rgba(0,229,255,.18)}
+.overview-card .ico{font-size:28px;margin-bottom:8px;display:block}
+.overview-card .val{font-family:var(--font-mono);font-size:28px;font-weight:800;color:var(--cyan);line-height:1;margin-bottom:5px}
+.overview-card .lbl{font-family:var(--font-mono);font-size:10.5px;color:var(--text-1);text-transform:uppercase}
+table{width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:12px}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--border)}
+th{color:var(--text-2);font-weight:700;font-size:10px;text-transform:uppercase;background:var(--bg-2)}
+td{color:var(--text-0)}
+.badge{display:inline-block;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:700}
+.badge.green{background:rgba(0,255,136,.15);color:var(--green)}
+.badge.amber{background:rgba(255,184,0,.15);color:var(--amber)}
+.badge.red{background:rgba(255,59,59,.15);color:var(--red)}
+.badge.cyan{background:rgba(0,229,255,.15);color:var(--cyan)}
+.right{background:var(--bg-1);border-left:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
+.rs-head{padding:12px 14px;border-bottom:1px solid var(--border);background:var(--bg-2);font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan);letter-spacing:1.2px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.rs-head::before{content:'';width:3px;height:12px;background:var(--green)}
+.rs-body{flex:1;overflow-y:auto;padding:12px}
+.intel-panel{background:var(--bg-2);border:1px solid var(--border);border-radius:6px;margin-bottom:10px;overflow:hidden}
+.intel-head{padding:8px 12px;background:var(--bg-3);border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:10.5px;font-weight:700;color:var(--cyan);letter-spacing:.8px;text-transform:uppercase}
+.intel-body{padding:10px}
+.intel-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:11px;gap:8px}
+.intel-row:last-child{border-bottom:none}
+.intel-row .k{color:var(--text-1);flex:1}
+.intel-row .v{color:var(--text-0);font-weight:700}
+.intel-row .v.cyan{color:var(--cyan)}
+.intel-row .v.green{color:var(--green)}
+.loader{grid-column:1/-1;text-align:center;padding:50px 20px;color:var(--text-1);font-family:var(--font-mono);font-size:12px}
+.loader .spin{width:36px;height:36px;border:2px solid var(--border);border-top-color:var(--cyan);border-radius:50%;animation:sp .8s linear infinite;margin:0 auto 14px}
+@keyframes sp{to{transform:rotate(360deg)}}
+canvas{max-height:300px}
+.card:has(canvas){min-height:420px;max-height:420px}
+
+.subtabs{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;padding:12px 14px;background:var(--bg-1);border:1px solid var(--border);border-radius:8px}
+.subtab{background:var(--bg-2);border:1px solid var(--border);color:var(--text-1);font-family:var(--font-mono);font-size:11px;font-weight:700;padding:8px 14px;border-radius:6px;cursor:pointer;transition:all .15s}
+.subtab:hover{background:var(--bg-3);color:var(--text-0)}
+.subtab.active{background:var(--cyan);color:var(--bg-0);border-color:var(--cyan)}
+.map{height:520px;border-radius:6px;overflow:hidden;border:1px solid var(--border);background:var(--bg-2)}
+.card:has(canvas){min-height:420px;max-height:420px}
+.card:has(table){min-height:450px;max-height:550px}
+.error{background:rgba(255,59,59,.08);border:1px solid var(--red);color:var(--red);padding:16px;border-radius:6px;font-family:var(--font-mono);font-size:12px}
+
+/* tables-reorg-applied */
+
+/* Cartes avec tableau : pleine largeur si > 5 colonnes */
+.card table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  display: block;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 550px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.card table thead {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--bg-3);
+}
+
+.card table thead tr {
+  background: var(--bg-3);
+}
+
+.card table thead th {
+  font-size: 11px;
+  padding: 12px 14px;
+  color: var(--cyan);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: var(--bg-3);
+  border-bottom: 2px solid var(--cyan-dim);
+  white-space: nowrap;
+  text-align: left;
+}
+
+.card table tbody td {
+  font-size: 12.5px;
+  padding: 11px 14px;
+  color: var(--text-0);
+  border-bottom: 1px solid var(--border);
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Alterner les lignes */
+.card table tbody tr:nth-child(even) td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Hover */
+.card table tbody tr:hover td {
+  background: rgba(0, 229, 255, 0.08);
+  color: var(--cyan);
+  cursor: pointer;
+}
+
+/* Cellules numériques à droite */
+.card table tbody td:last-child {
+  text-align: right;
+  font-weight: 700;
+  color: var(--cyan);
+}
+
+/* Scrollbars visibles */
+.card table::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.card table::-webkit-scrollbar-track {
+  background: var(--bg-1);
+  border-radius: 5px;
+}
+.card table::-webkit-scrollbar-thumb {
+  background: var(--cyan-dim);
+  border-radius: 5px;
+  border: 2px solid var(--bg-1);
+}
+.card table::-webkit-scrollbar-thumb:hover {
+  background: var(--cyan);
+}
+
+/* Forcer les cartes avec tableaux en pleine largeur */
+#dashboard > .card:has(table) {
+  grid-column: 1 / -1;
+  min-height: 450px;
+  max-height: 650px;
+}
+
+/* Responsive : sur mobile, réduire la police */
+@media (max-width: 900px) {
+  .card table {
+    font-size: 11px;
+  }
+  .card table thead th,
+  .card table tbody td {
+    padding: 8px 10px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <span class="dot"></span>
+    CINOR MONITOR
+    <span class="sub">/ Nord de La Réunion</span>
+  </div>
+  <div class="topbar-right">
+    <div class="stat"><span>MODULES</span><span class="val green">6</span></div>
+    <div class="stat"><span>COMMUNES</span><span class="val">3</span></div>
+    <div class="stat"><span>HABITANTS</span><span class="val">216 588</span></div>
+    <div class="stat"><span>⏱</span><span class="val" id="tbUpdate">—</span></div>
+  </div>
+  <div class="tabs" id="tabs"></div>
+</div>
+
+<div class="app">
+  <aside class="sidebar">
+    <div class="sb-head">
+      <div class="sb-title">◆ MODULES CINOR</div>
+      <div class="sb-count" id="sbCount">6 modules · 3 communes</div>
+    </div>
+    <div class="sb-list" id="sbList"></div>
+  </aside>
+
+  <main class="center">
+    <div class="work-bar">
+      <div>
+        <div class="work-title"><span class="ic" id="activeIcon">📊</span><span id="activeName">Vue d'ensemble</span></div>
+        <div class="work-sub" id="activeSub">3 communes · 216 588 habitants</div>
+      </div>
+      <div><button class="wb-btn" id="refreshBtn">🔄 Actualiser</button></div>
+    </div>
+    <main id="dashboard">
+      <div class="loader"><div class="spin"></div>Chargement du dashboard CINOR…</div>
+    </main>
+  </main>
+
+  <aside class="right">
+    <div class="rs-head">◆ INTELLIGENCE</div>
+    <div class="rs-body">
+      <div class="intel-panel">
+        <div class="intel-head">📊 MODULE ACTIF</div>
+        <div class="intel-body">
+          <div class="intel-row"><span class="k">Module</span><span class="v cyan" id="ivName">—</span></div>
+          <div class="intel-row"><span class="k">Statut</span><span class="v green">● LIVE</span></div>
+        </div>
+      </div>
+      <div class="intel-panel">
+        <div class="intel-head">🏛️ TERRITOIRE</div>
+        <div class="intel-body">
+          <div class="intel-row"><span class="k">Communes</span><span class="v">3</span></div>
+          <div class="intel-row"><span class="k">Population</span><span class="v cyan">216 588</span></div>
+          <div class="intel-row"><span class="k">Superficie</span><span class="v">28 992 ha</span></div>
+          <div class="intel-row"><span class="k">Densité</span><span class="v">752 hab/km²</span></div>
+        </div>
+      </div>
+      <div class="intel-panel">
+        <div class="intel-head">⚙️ SYSTÈME</div>
+        <div class="intel-body">
+          <div class="intel-row"><span class="k">Source</span><span class="v">cinor.re</span></div>
+          <div class="intel-row"><span class="k">Format</span><span class="v cyan">JSON statique</span></div>
+          <div class="intel-row"><span class="k">MAJ</span><span class="v green" id="sysUpdate">—</span></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+<script>
+// Charge les données CINOR en parallèle (mode split)
+window.CINOR_RAW = {};
+(async function() {
+  const SECTIONS = ['caf','emploi','sante','sports','permis','routes','stops','shapes','stats','meta'];
+  const results = await Promise.allSettled(SECTIONS.map(async (k) => {
+    const r = await fetch('data-json/' + k + '.json', { cache: 'force-cache' });
+    if (!r.ok) throw new Error(k + ' : HTTP ' + r.status);
+    return [k, await r.json()];
+  }));
+  for (const res of results) {
+    if (res.status === 'fulfilled') {
+      window.CINOR_RAW[res.value[0]] = res.value[1];
+    } else {
+      console.warn('⚠️  ' + res.reason);
+    }
+  }
+  console.log('✅ CINOR_RAW chargé (mode split) :', Object.keys(window.CINOR_RAW));
+  // Charger ensuite adapt-enriched.js
+  const s = document.createElement('script');
+  s.src = 'adapt-enriched.js';
+  s.onload = () => {
+    console.log('✅ adapt-enriched.js chargé');
+    window.dispatchEvent(new Event('cinor-ready'));
+  };
+  document.head.appendChild(s);
+})();
+</script>
+<script>
+// ============================================================
+// UTILITAIRES CINOR_ENRICHED (ajoutés par patch-final.py)
+// ============================================================
+function cinorEnriched(section) {
+  return window.CINOR_ENRICHED?.[section] || null;
+}
+
+function cinorRaw(section) {
+  return window.CINOR_RAW?.[section] || null;
+}
+
+function getEmploiEvolution() {
+  const e = window.CINOR_ENRICHED?.emploi?.evolution || {};
+  return Object.entries(e).map(([k, v]) => ({ commune: k, ...v }));
+}
+
+function getTransportTop(n = 10) {
+  return (window.CINOR_ENRICHED?.transport?.routes || []).slice(0, n);
+}
+
+function getSportsAccessibles() {
+  const all = window.CINOR_RAW?.sports || [];
+  return all.filter(s => s.accessibilite_de_l_installation_en_faveur_des_personnes_en_situation_de_handicap === 'true');
+}
+
+function getCafLatest() {
+  return window.CINOR_ENRICHED?.caf?.latest || {};
+}
+
+</script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+let DATA = null;
+const CHARTS = {};
+const DASH = () => document.getElementById('dashboard');
+
+const ICONS = {overview:'📊',transport:'🚌',air:'🌿',habitat:'🏘️',sante:'🏥',emploi:'🏗️',sports:'🏃',caf:'💰',social:'👥',analyse:'📈',gouvernance:'🏛️',about:'ℹ️'};
+const LABELS = {overview:"Vue d'ensemble",transport:'Transport',air:'Qualité air',habitat:'Habitat',sante:'Santé',emploi:'Emploi',sports:'Sports',caf:'CAF',social:'Social',analyse:'Analyse',gouvernance:'Gouvernance',about:'À propos'};
+
+function renderKPI(c, {value, label, evolution, source}){
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `<h3>${label}${source ? `<span class="source">${source}</span>` : ''}</h3><div class="kpi">${value}</div>${evolution ? `<div class="kpi-evolution">${evolution}</div>` : ''}`;
+  c.appendChild(card);
+}
+
+function renderCard(c, title, html, source){
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `<h3>${title}${source ? `<span class="source">${source}</span>` : ''}</h3>${html}`;
+  c.appendChild(card);
+  return card;
+}
+
+function renderChart(c, title, type, data, source){
+  const card = renderCard(c, title, '<canvas></canvas>', source);
+  const canvas = card.querySelector('canvas');
+  const existing = Chart.getChart(canvas);
+  if (existing) { try { existing.destroy(); } catch(e){} }
+  if (CHARTS[title]) { try { CHARTS[title].destroy(); } catch(e){} delete CHARTS[title]; }
+  CHARTS[title] = new Chart(canvas, {
+    type, data,
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { color: '#8ba3c7', font: { size: 11, family: 'JetBrains Mono' } } } },
+      scales: (type === 'doughnut' || type === 'pie') ? {} : {
+        x: { ticks: { color: '#8ba3c7', font: { size: 10 } }, grid: { color: '#1c2940' } },
+        y: { ticks: { color: '#8ba3c7', font: { size: 10 } }, grid: { color: '#1c2940' } }
+      }
+    }
+  });
+}
+
+function renderTable(c, title, rows, cols, source){
+  let html = '<table><thead><tr>';
+  cols.forEach(col => html += `<th>${col.label}</th>`);
+  html += '</tr></thead><tbody>';
+  rows.forEach(r => {
+    html += '<tr>';
+    cols.forEach(col => html += `<td>${r[col.key] ?? '—'}</td>`);
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  renderCard(c, title, html, source);
+}
+
+/* ============ MODULES ============ */
+
+async function moduleOverview(c){
+  renderKPI(c, { value: '216 588', label: 'Population', source: 'INSEE 2022' });
+  renderKPI(c, { value: '3', label: 'Communes', source: 'CINOR' });
+  renderKPI(c, { value: '72', label: 'Lignes bus', source: 'GTFS Citalis' });
+  renderKPI(c, { value: '1 633', label: 'Arrêts bus', source: 'GTFS Citalis' });
+  renderKPI(c, { value: '2,7 km', label: 'Téléphérique Papang', source: 'CINOR' });
+  renderKPI(c, { value: '1 000', label: 'Vélos électriques', source: 'CINOR' });
+}
+
+async function moduleTransport(c){
+  c.innerHTML = `
+    <div class="subtabs" id="transport-subtabs">
+      <button class="subtab active" data-subtab="global">📊 Vue globale</button>
+      <button class="subtab" data-subtab="arrets">🚌 Arrêts Citalis</button>
+      <button class="subtab" data-subtab="lignes">🛣️ Lignes</button>
+      <button class="subtab" data-subtab="carte">🗺️ Carte réseau</button>
+    </div>
+  `;
+  const tabs = c.querySelectorAll('#transport-subtabs .subtab');
+  tabs.forEach(t => {
+    t.addEventListener('click', () => {
+      tabs.forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      renderTransportTab(c, t.dataset.subtab);
+    });
+  });
+  renderTransportTab(c, 'global');
+}
+
+async function renderTransportTab(c, tab){
+  c.querySelectorAll(':scope > *:not(#transport-subtabs)').forEach(el => el.remove());
+
+  if (tab === 'global')   await transportGlobal(c);
+  if (tab === 'arrets')   await transportArrets(c);
+  if (tab === 'lignes')   await transportLignes(c);
+  if (tab === 'carte')    await transportCarte(c);
+}
+
+async function transportGlobal(c){
+  try {
+    const stats = (window.CINOR_RAW?.stats) || await fetch('data/citalis-stats.json').then(r => r.json());
+    renderKPI(c, { value: stats.nb_lignes, label: 'Lignes Citalis', source: 'GTFS' });
+    renderKPI(c, { value: stats.nb_arrets.toLocaleString('fr-FR'), label: 'Arrêts', source: 'GTFS' });
+    renderKPI(c, { value: stats.nb_trajets.toLocaleString('fr-FR'), label: 'Trajets', source: 'GTFS' });
+  } catch(e){ console.warn('Stats non chargées', e); }
+
+  if (DATA && DATA.transport){
+    const t = DATA.transport;
+    renderKPI(c, { value: t.telepherique_stations, label: 'Stations Papang', source: 'CINOR' });
+    renderKPI(c, { value: t.telepherique_voyageurs_jour.toLocaleString('fr-FR'), label: 'Voyageurs Papang/jour', source: 'CINOR' });
+    renderKPI(c, { value: t.velos_electriques, label: 'Vélos électriques', source: 'CINOR' });
+
+    renderCard(c, 'Téléphérique Papang', `
+      <table>
+        <tr><th>Indicateur</th><th>Valeur</th></tr>
+        <tr><td>Stations</td><td>${t.telepherique_stations}</td></tr>
+        <tr><td>Longueur</td><td>${t.telepherique_longueur_km} km</td></tr>
+        <tr><td>Voyageurs/jour</td><td>${t.telepherique_voyageurs_jour.toLocaleString('fr-FR')}</td></tr>
+        <tr><td>Cabines</td><td>${t.telepherique_cabines}</td></tr>
+        <tr><td>Fréquence</td><td>toutes les ${t.telepherique_frequence_sec} s</td></tr>
+      </table>
+    `, 'CINOR');
+  }
+}
+
+async function transportArrets(c){
+  try {
+    const stops = (window.CINOR_RAW?.stops) || await fetch('data/citalis-stops.json').then(r => r.json());
+    renderKPI(c, { value: stops.length.toLocaleString('fr-FR'), label: 'Arrêts Citalis', source: 'GTFS' });
+
+    // Top arrêts par nom
+    const parNom = {};
+    stops.forEach(s => {
+      const n = s.nom || 'Inconnu';
+      parNom[n] = (parNom[n] || 0) + 1;
+    });
+    const sorted = Object.entries(parNom).sort((a,b) => b[1] - a[1]).slice(0, 10);
+    if (sorted.length > 1){
+      renderChart(c, 'Top 10 arrêts', 'bar', {
+        labels: sorted.map(n => n[0].substring(0, 30)),
+        datasets: [{ label: 'Variantes', data: sorted.map(n => n[1]), backgroundColor: '#00e5ff' }]
+      }, 'GTFS');
+    }
+
+    renderStopsMap(c, 'Carte des arrêts Citalis', stops);
+  } catch(e){
+    c.innerHTML += `<div class="error">Erreur arrêts : ${e.message}</div>`;
+  }
+}
+
+async function transportLignes(c){
+  try {
+    const routes = (window.CINOR_RAW?.routes) || (window.CINOR_ENRICHED?.transport?.routes) || await fetch('data/citalis-routes.json').then(r => r.json());
+    renderKPI(c, { value: routes.length, label: 'Lignes Citalis', source: 'GTFS' });
+
+    const sorted = [...routes].sort((a,b) => b.nb_trajets - a.nb_trajets).slice(0, 15);
+    if (sorted.length > 1){
+      renderChart(c, 'Top 15 lignes (par nb trajets)', 'bar', {
+        labels: sorted.map(r => r.code || r.id),
+        datasets: [{ label: 'Trajets', data: sorted.map(r => r.nb_trajets), backgroundColor: '#00ff88' }]
+      }, 'GTFS');
+    }
+
+    renderTable(c, 'Lignes Citalis', routes.map(r => ({
+      code: r.code || '—',
+      nom: (r.nom || '—').substring(0, 50),
+      type: r.type || '—',
+      trajets: r.nb_trajets
+    })), [
+      { key: 'code', label: 'Code' },
+      { key: 'nom', label: 'Nom' },
+      { key: 'type', label: 'Type' },
+      { key: 'trajets', label: 'Trajets' }
+    ], 'GTFS');
+  } catch(e){
+    c.innerHTML += `<div class="error">Erreur lignes : ${e.message}</div>`;
+  }
+}
+
+async function transportCarte(c){
+  try {
+    const stops = (window.CINOR_RAW?.stops) || await fetch('data/citalis-stops.json').then(r => r.json());
+    const shapes = (window.CINOR_RAW?.shapes) || await fetch('data/citalis-shapes.json').then(r => r.json());
+    renderKPI(c, { value: stops.length.toLocaleString('fr-FR'), label: 'Arrêts', source: 'GTFS' });
+    renderKPI(c, { value: Object.keys(shapes).length, label: 'Tracés', source: 'GTFS' });
+    renderFullMap(c, 'Réseau Citalis complet', stops, shapes);
+  } catch(e){
+    c.innerHTML += `<div class="error">Erreur carte : ${e.message}</div>`;
+  }
+}
+
+function renderStopsMap(c, title, stops){
+  const card = renderCard(c, title, '<div class="map" style="height:520px"></div>', 'GTFS');
+  const mapDiv = card.querySelector('.map');
+  const map = L.map(mapDiv).setView([-20.9, 55.45], 11);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors', maxZoom: 19
+  }).addTo(map);
+
+  const layer = typeof L.markerClusterGroup === 'function'
+    ? L.markerClusterGroup({ maxClusterRadius: 50 })
+    : L.featureGroup();
+
+  stops.forEach(s => {
+    if (!s.lat || !s.lon) return;
+    L.marker([(s.stop_lat || s.lat), (s.stop_lon || s.lon)])
+      .bindPopup(`<strong>${s.nom || 'Arrêt'}</strong>`)
+      .addTo(layer);
+  });
+
+  layer.addTo(map);
+  if (layer.getBounds && layer.getLayers().length){
+    try { map.fitBounds(layer.getBounds().pad(0.1)); } catch(e){}
+  }
+  setTimeout(() => map.invalidateSize(), 200);
+  return map;
+}
+
+function renderFullMap(c, title, stops, shapes){
+  const card = renderCard(c, title, '<div class="map" style="height:520px"></div>', 'GTFS');
+  const mapDiv = card.querySelector('.map');
+  const map = L.map(mapDiv).setView([-20.9, 55.45], 11);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors', maxZoom: 19
+  }).addTo(map);
+
+  // Ajouter les tracés (polylignes)
+  const colors = ['#00e5ff', '#00ff88', '#ffb800', '#a855f7', '#ff3b3b', '#3b82f6'];
+  let colorIdx = 0;
+  const linesGroup = L.featureGroup();
+  Object.entries(shapes).forEach(([sid, coords]) => {
+    const latlngs = coords.map(p => [p.lat, p.lon]);
+    L.polyline(latlngs, {
+      color: colors[colorIdx % colors.length],
+      weight: 3,
+      opacity: 0.6
+    }).addTo(linesGroup);
+    colorIdx++;
+  });
+  linesGroup.addTo(map);
+
+  // Ajouter les arrêts (clusters)
+  const stopsLayer = typeof L.markerClusterGroup === 'function'
+    ? L.markerClusterGroup({ maxClusterRadius: 50 })
+    : L.featureGroup();
+
+  stops.forEach(s => {
+    if (!s.lat || !s.lon) return;
+    L.marker([(s.stop_lat || s.lat), (s.stop_lon || s.lon)])
+      .bindPopup(`<strong>${s.nom || 'Arrêt'}</strong>`)
+      .addTo(stopsLayer);
+  });
+  stopsLayer.addTo(map);
+
+  setTimeout(() => map.invalidateSize(), 200);
+  return map;
+}
+
+async function moduleAir(c){
+  renderKPI(c, { value: '7', label: 'Polluants mesurés', source: 'data.gouv.fr' });
+  renderKPI(c, { value: '3', label: 'Stations de mesure', source: 'Atmo Réunion' });
+  renderKPI(c, { value: '24h/24', label: 'Surveillance', source: 'Atmo Réunion' });
+
+  renderChart(c, 'Polluants réglementés', 'doughnut', {
+    labels: ['SO2', 'NO', 'NO2', 'PM10', 'PM2.5', 'O3', 'CO'],
+    datasets: [{
+      data: [1, 1, 1, 1, 1, 1, 1],
+      backgroundColor: ['#00e5ff','#00ff88','#ffb800','#a855f7','#ff3b3b','#3b82f6','#9b59b6']
+    }]
+  }, 'data.gouv.fr');
+
+  renderCard(c, 'Réseau de mesures', `
+    <table>
+      <tr><th>Polluant</th><th>Description</th></tr>
+      <tr><td><strong>SO₂</strong></td><td>Dioxyde de soufre</td></tr>
+      <tr><td><strong>NO / NO₂</strong></td><td>Oxydes d'azote (trafic routier)</td></tr>
+      <tr><td><strong>PM10 / PM2.5</strong></td><td>Particules fines</td></tr>
+      <tr><td><strong>O₃</strong></td><td>Ozone</td></tr>
+      <tr><td><strong>CO</strong></td><td>Monoxyde de carbone</td></tr>
+    </table>
+    <p style="font-family:var(--font-mono);font-size:11px;color:var(--text-1);margin-top:12px">
+      Concentrations moyennes mensuelles issues du réseau fixe sur le territoire de la CINOR.
+    </p>
+  `, 'Atmo Réunion');
+}
+
+async function moduleSocial(c){
+  if (!DATA || !DATA.social) return;
+  const s = DATA.social;
+  const d = DATA.deplacements;
+
+  renderKPI(c, { value: s.qpv_population.toLocaleString('fr-FR'), label: 'Population QPV', source: 'ORS 2026' });
+  renderKPI(c, { value: s.qpv_pct + '%', label: 'Part QPV', source: 'ORS 2026' });
+  renderKPI(c, { value: s.taux_pauvrete, label: 'Taux de pauvreté', source: 'INSEE' });
+  renderKPI(c, { value: d.voiture_pct + '%', label: 'Déplacements voiture', source: 'INSEE' });
+
+  renderChart(c, 'Modes de déplacement', 'doughnut', {
+    labels: ['Voiture', 'Transport collectif', 'Marche', 'Vélo', 'Télétravail'],
+    datasets: [{
+      data: [d.voiture_pct, d.transport_collectif_pct, d.marche_pct, d.velo_pct, d.teletravail_pct],
+      backgroundColor: ['#ff3b3b','#00e5ff','#00ff88','#ffb800','#a855f7']
+    }]
+  }, 'INSEE');
+
+  renderChart(c, 'Structure d\'âge', 'bar', {
+    labels: ['< 20 ans', '20-59 ans', '60+ ans'],
+    datasets: [{
+      label: '% de la population',
+      data: [s.part_moins_20_ans, 100 - s.part_moins_20_ans - s.part_60_ans_plus, s.part_60_ans_plus],
+      backgroundColor: ['#00e5ff','#00ff88','#ffb800']
+    }]
+  }, 'INSEE 2022');
+
+  // Charger les QPV
+  try {
+    const url = 'https://data.regionreunion.com/api/explore/v2.1/catalog/datasets/quartiers-prioritaires-de-la-politique-de-la-ville-qpv/records?limit=100';
+    const res = await fetch(url);
+    const json = await res.json();
+    const qpv = json.results || [];
+    renderKPI(c, { value: qpv.length, label: 'QPV (La Réunion)', source: 'Région' });
+
+    if (qpv.length > 0) {
+      renderTable(c, 'Quartiers prioritaires', qpv.slice(0, 30).map(q => ({
+        nom: q.nom_qpv || q.libelle || q.nom || '—',
+        commune: q.libcom || q.commune || '—',
+        code: q.code_qpv || '—'
+      })), [
+        { key: 'nom', label: 'Nom QPV' },
+        { key: 'commune', label: 'Commune' },
+        { key: 'code', label: 'Code' }
+      ], 'Région');
+    }
+  } catch(e){
+    console.warn('QPV non chargés', e);
+  }
+}
+
+async function moduleGouvernance(c){
+  renderKPI(c, { value: '3', label: 'Communes', source: 'CINOR' });
+  renderKPI(c, { value: '40', label: 'Compétences', source: 'CINOR' });
+  renderKPI(c, { value: '216 588', label: 'Population', source: 'INSEE 2022' });
+
+  // Tableau des communes
+  renderTable(c, 'Communes membres', [
+    { nom: 'Saint-Denis', population: '153 001', statut: 'Chef-lieu' },
+    { nom: 'Sainte-Marie', population: '34 344', statut: 'Commune' },
+    { nom: 'Sainte-Suzanne', population: '24 203', statut: 'Commune' }
+  ], [
+    { key: 'nom', label: 'Commune' },
+    { key: 'population', label: 'Population' },
+    { key: 'statut', label: 'Statut' }
+  ], 'INSEE 2022');
+
+  // Charger les conseillers communautaires
+  try {
+    const url = 'https://data.regionreunion.com/api/explore/v2.1/catalog/datasets/liste-des-conseillers-communautaires/records?limit=100';
+    const res = await fetch(url);
+    const json = await res.json();
+    const conseillers = json.results || [];
+    renderKPI(c, { value: conseillers.length, label: 'Conseillers communautaires', source: 'Région' });
+
+    if (conseillers.length > 0) {
+      const keys = Object.keys(conseillers[0]);
+      renderTable(c, 'Conseillers communautaires', conseillers.slice(0, 30).map(x => {
+        const obj = {};
+        keys.slice(0, 5).forEach(k => obj[k] = x[k] ?? '—');
+        return obj;
+      }), keys.slice(0, 5).map(k => ({ key: k, label: k })), 'Région');
+    }
+  } catch(e){
+    console.warn('Conseillers non chargés', e);
+  }
+}
+
+/* ============================================================
+   MODULE HABITAT
+   ============================================================ */
+async function moduleHabitat(c){
+  try {
+    const permis = (window.CINOR_ENRICHED?.permis?.raw) || (window.CINOR_RAW?.permis) || await fetch('data/cinor-permis.json').then(r => r.json());
+    const permisEnrichi = window.CINOR_ENRICHED?.permis || {};
+    renderKPI(c, { value: permis.length.toLocaleString('fr-FR'), label: 'Permis de construire', source: 'CINOR' });
+
+    const totalLogts = permis.reduce((s, p) => s + (parseInt(p.nb_lgt_tot_crees, 10) || 0), 0);
+    renderKPI(c, { value: totalLogts.toLocaleString('fr-FR'), label: 'Logements créés', source: 'CINOR' });
+
+    const totalSurf = permis.reduce((s, p) => s + (parseFloat(p.surf_hab_creee) || 0), 0);
+    renderKPI(c, { value: Math.round(totalSurf).toLocaleString('fr-FR') + ' m²', label: 'Surface créée', source: 'CINOR' });
+
+    const nomsCommunes = { '97411': 'Saint-Denis', '97418': 'Sainte-Marie', '97420': 'Sainte-Suzanne' };
+    const parCommune = {};
+    permis.forEach(p => {
+      const cm = nomsCommunes[p.comm] || p.comm || 'Autre';
+      parCommune[cm] = (parCommune[cm] || 0) + 1;
+    });
+    const sortedC = Object.entries(parCommune).sort((a,b) => b[1] - a[1]);
+    if (sortedC.length > 1){
+      renderChart(c, 'Permis par commune', 'bar', {
+        labels: sortedC.map(s => s[0]),
+        datasets: [{ label: 'Nb permis', data: sortedC.map(s => s[1]), backgroundColor: '#00ff88' }]
+      }, 'CINOR');
+    }
+
+    const parType = {};
+    permis.forEach(p => {
+      const t = p.type_dau || 'Autre';
+      parType[t] = (parType[t] || 0) + 1;
+    });
+    const sortedT = Object.entries(parType).sort((a,b) => b[1] - a[1]).slice(0, 8);
+    if (sortedT.length > 1){
+      renderChart(c, 'Permis par type', 'doughnut', {
+        labels: sortedT.map(t => t[0]),
+        datasets: [{ data: sortedT.map(t => t[1]),
+          backgroundColor: ['#00e5ff','#00ff88','#ffb800','#a855f7','#ff3b3b'] }]
+      }, 'CINOR');
+    }
+
+    const parAnnee = {};
+    permis.forEach(p => {
+      const y = String(p.date_reelle_autorisation || '').substring(0, 4);
+      if (y && y.length === 4 && !isNaN(Number(y))) parAnnee[y] = (parAnnee[y] || 0) + 1;
+    });
+    const sortedY = Object.keys(parAnnee).sort();
+    if (sortedY.length > 1){
+      renderChart(c, 'Permis par année', 'line', {
+        labels: sortedY,
+        datasets: [{ label: 'Nb permis', data: sortedY.map(y => parAnnee[y]),
+          borderColor: '#00e5ff', backgroundColor: 'rgba(0,229,255,0.15)',
+          fill: true, tension: 0.3 }]
+      }, 'CINOR');
+    }
+
+    renderTable(c, 'Permis de construire CINOR', permis.slice(0, 50).map(p => ({
+      num: p.num_dau || '—',
+      commune: nomsCommunes[p.comm] || p.comm || '—',
+      type: p.type_dau || '—',
+      dest: String(p.destination_principale || '—').substring(0, 30),
+      logts: p.nb_lgt_tot_crees || '—',
+      date: String(p.date_reelle_autorisation || '—').substring(0, 10)
+    })), [
+      { key: 'num', label: 'N° permis' },
+      { key: 'commune', label: 'Commune' },
+      { key: 'type', label: 'Type' },
+      { key: 'dest', label: 'Destination' },
+      { key: 'logts', label: 'Logements' },
+      { key: 'date', label: 'Date' }
+    ], 'CINOR');
+  } catch(e){
+    c.innerHTML = `<div class="error">Erreur habitat : ${e.message}</div>`;
+  }
+}
+
+/* ============================================================
+   MODULE SANTÉ
+   ============================================================ */
+async function moduleSante(c){
+  try {
+    const sante = (window.CINOR_ENRICHED?.sante?.raw) || (window.CINOR_RAW?.sante) || await fetch('data/cinor-sante.json').then(r => r.json());
+    const santeEnrichi = window.CINOR_ENRICHED?.sante || {};
+    renderKPI(c, { value: sante.length, label: 'Établissements', source: 'CINOR' });
+
+    const parCommune = {};
+    sante.forEach(s => {
+      const cm = s.com_name || 'Inconnue';
+      parCommune[cm] = (parCommune[cm] || 0) + 1;
+    });
+    const sortedC = Object.entries(parCommune).sort((a,b) => b[1] - a[1]);
+    if (sortedC.length > 1){
+      renderChart(c, 'Établissements par commune', 'bar', {
+        labels: sortedC.map(s => s[0]),
+        datasets: [{ label: 'Nb', data: sortedC.map(s => s[1]), backgroundColor: '#00e5ff' }]
+      }, 'CINOR');
+    }
+
+    const parCat = {};
+    sante.forEach(s => {
+      const cat = s.libcategetab || 'Autre';
+      parCat[cat] = (parCat[cat] || 0) + 1;
+    });
+    const sortedCat = Object.entries(parCat).sort((a,b) => b[1] - a[1]).slice(0, 8);
+    if (sortedCat.length > 1){
+      renderChart(c, 'Établissements par catégorie', 'doughnut', {
+        labels: sortedCat.map(s => s[0].substring(0, 25)),
+        datasets: [{ data: sortedCat.map(s => s[1]),
+          backgroundColor: ['#00e5ff','#00ff88','#ffb800','#a855f7','#ff3b3b','#3b82f6'] }]
+      }, 'CINOR');
+    }
+
+    renderTable(c, 'Établissements sanitaires CINOR', sante.slice(0, 50).map(s => ({
+      nom: (s.rs || '—').substring(0, 40),
+      commune: s.com_name || '—',
+      categorie: (s.libcategetab || '—').substring(0, 30),
+      tel: s.telephone || '—'
+    })), [
+      { key: 'nom', label: 'Établissement' },
+      { key: 'commune', label: 'Commune' },
+      { key: 'categorie', label: 'Catégorie' },
+      { key: 'tel', label: 'Téléphone' }
+    ], 'CINOR');
+  } catch(e){
+    c.innerHTML = `<div class="error">Erreur santé : ${e.message}</div>`;
+  }
+}
+
+/* ============================================================
+   MODULE EMPLOI
+   ============================================================ */
+async function moduleEmploi(c){
+  try {
+    const enriched = window.CINOR_ENRICHED?.emploi || {};
+    const emploi = [];
+    (enriched.communes || []).forEach(cm => {
+      (enriched.by_commune[cm] || []).forEach(r => emploi.push(r));
+    });
+    const dates = [...new Set(emploi.map(e => e.date))].sort(); const lastDate = dates[dates.length - 1]; const totalInscrits = emploi.filter(e => e.date === lastDate).reduce((s, e) => s + (parseInt(e.inscrits, 10) || 0), 0);
+    renderKPI(c, { value: totalInscrits.toLocaleString('fr-FR'), label: 'Demandeurs d\'emploi (total)', source: 'CINOR' });
+    // KPIs additionnels
+    const kpiExtra = document.createElement('div');
+    kpiExtra.className = 'kpi-row';
+    kpiExtra.innerHTML = `
+      <div class="kpi-card"><div class="kpi-value">${enriched.communes.length}</div><div class="kpi-label">Communes couvertes</div></div>
+      <div class="kpi-card"><div class="kpi-value">${emploi.length}</div><div class="kpi-label">Observations</div></div>
+    `;
+    c.appendChild(kpiExtra);
+
+    const parCommune = {};
+    emploi.forEach(e => {
+      const cm = e.nom_de_la_commune || 'Inconnue';
+      parCommune[cm] = (parCommune[cm] || 0) + (parseInt(e.inscrits, 10) || 0);
+    });
+    const sortedC = Object.entries(parCommune).sort((a,b) => b[1] - a[1]);
+    if (sortedC.length > 1){
+      renderChart(c, 'Demandeurs d\'emploi par commune', 'bar', {
+        labels: sortedC.map(s => s[0]),
+        datasets: [{ label: 'Inscrits', data: sortedC.map(s => s[1]), backgroundColor: '#ffb800' }]
+      }, 'CINOR');
+    }
+
+    renderTable(c, 'Demandeurs d\'emploi CINOR', emploi.map(e => ({
+      commune: e.nom_de_la_commune || '—',
+      code: e.code_commune_insee || '—',
+      inscrits: e.inscrits || '—',
+      date: e.date || '—'
+    })), [
+      { key: 'commune', label: 'Commune' },
+      { key: 'code', label: 'Code INSEE' },
+      { key: 'inscrits', label: 'Inscrits' },
+      { key: 'date', label: 'Date' }
+    ], 'CINOR');
+  } catch(e){
+    c.innerHTML = `<div class="error">Erreur emploi : ${e.message}</div>`;
+  }
+}
+
+/* ============================================================
+   MODULE SPORTS
+   ============================================================ */
+async function moduleSports(c){
+  try {
+    // Charger les données brutes (fallback) + enrichies
+    const rawSports = window.CINOR_RAW?.sports || await fetch('data/cinor-sports.json').then(r => r.json());
+    const enriched = window.CINOR_ENRICHED?.sports || {};
+    // Utiliser les raw pour le traitement (liste plate)
+    const sports = rawSports;
+    renderKPI(c, { value: sports.length.toLocaleString('fr-FR'), label: 'Équipements sportifs', source: 'CINOR' });
+    // KPI accessibilité
+    const nbAccess = sports.filter(s => s.accessibilite_de_l_installation_en_faveur_des_personnes_en_situation_de_handicap === 'true').length;
+    const pctAccess = sports.length ? Math.round(nbAccess / sports.length * 100) : 0;
+    const kpiExtra = document.createElement('div');
+    kpiExtra.className = 'kpi-row';
+    kpiExtra.innerHTML = `
+      <div class="kpi-card"><div class="kpi-value">${enriched.communes?.length || 0}</div><div class="kpi-label">Communes</div></div>
+      <div class="kpi-card"><div class="kpi-value">${pctAccess}%</div><div class="kpi-label">Accessibles PMR</div></div>
+      <div class="kpi-card"><div class="kpi-value">${Object.keys(enriched.by_famille || {}).length}</div><div class="kpi-label">Familles sportives</div></div>
+    `;
+    c.appendChild(kpiExtra);
+
+    const parCommune = {};
+    sports.forEach(s => {
+      const cm = s.commune || 'Inconnue';
+      parCommune[cm] = (parCommune[cm] || 0) + 1;
+    });
+    const sortedC = Object.entries(parCommune).sort((a,b) => b[1] - a[1]);
+    if (sortedC.length > 1){
+      renderChart(c, 'Équipements par commune', 'bar', {
+        labels: sortedC.map(s => s[0]),
+        datasets: [{ label: 'Nb équipements', data: sortedC.map(s => s[1]), backgroundColor: '#00ff88' }]
+      }, 'CINOR');
+    }
+
+    renderTable(c, 'Équipements sportifs CINOR', sports.slice(0, 50).map(s => ({
+      nom: (s.nom_de_l_installation_sportive || '—').substring(0, 50),
+      commune: s.commune || '—',
+      cp: s.code_postal || '—',
+      access: s.accessibilite_de_l_installation_en_faveur_des_personnes_en_situation_de_handicap ? '✅' : '❌'
+    })), [
+      { key: 'nom', label: 'Installation' },
+      { key: 'commune', label: 'Commune' },
+      { key: 'cp', label: 'CP' },
+      { key: 'access', label: 'Accessible' }
+    ], 'CINOR');
+  } catch(e){
+    c.innerHTML = `<div class="error">Erreur sports : ${e.message}</div>`;
+  }
+}
+
+/* ============================================================
+   MODULE CAF
+   ============================================================ */
+async function moduleCaf(c){
+  try {
+    const enriched = window.CINOR_ENRICHED?.caf || {};
+    const caf = [];
+    Object.values(enriched.by_type || {}).forEach(list => list.forEach(r => caf.push(r)));
+    renderKPI(c, { value: caf.length, label: 'Lignes CAF', source: 'Région' });
+    const kpiExtra = document.createElement('div');
+    kpiExtra.className = 'kpi-row';
+    kpiExtra.innerHTML = `
+      <div class="kpi-card"><div class="kpi-value">${enriched.types?.length || 0}</div><div class="kpi-label">Types de prestation</div></div>
+      <div class="kpi-card"><div class="kpi-value">${enriched.years?.length || 0}</div><div class="kpi-label">Années couvertes</div></div>
+      <div class="kpi-card"><div class="kpi-value">${enriched.years?.[0] || '—'} → ${enriched.years?.[enriched.years.length-1] || '—'}</div><div class="kpi-label">Période</div></div>
+    `;
+    c.appendChild(kpiExtra);
+
+    const parType = {};
+    caf.forEach(d => {
+      const t = d.type_prestation || 'Autre';
+      parType[t] = (parType[t] || 0) + (d.nbbeneficiaires || 0);
+    });
+    const sortedT = Object.entries(parType).sort((a,b) => b[1] - a[1]).slice(0, 10);
+    if (sortedT.length > 1){
+      renderChart(c, 'Bénéficiaires CAF par prestation', 'bar', {
+        labels: sortedT.map(t => t[0].substring(0, 30)),
+        datasets: [{ label: 'Bénéficiaires', data: sortedT.map(t => t[1]), backgroundColor: '#a855f7' }]
+      }, 'Région');
+    }
+
+    renderTable(c, 'Bénéficiaires CAF', caf.slice(0, 50).map(d => ({
+      date: d.date || '—',
+      prestation: (d.type_prestation || '—').substring(0, 40),
+      benef: (d.nbbeneficiaires || 0).toLocaleString('fr-FR')
+    })), [
+      { key: 'date', label: 'Date' },
+      { key: 'prestation', label: 'Prestation' },
+      { key: 'benef', label: 'Bénéficiaires' }
+    ], 'Région');
+  } catch(e){
+    c.innerHTML = `<div class="error">Erreur CAF : ${e.message}</div>`;
+  }
+}
+
+/* ============================================================
+   MODULE ANALYSE — Évolution temporelle CAF, Emploi, Construction
+   ============================================================ */
+async function moduleAnalyse(c){
+  const caf = window.CINOR_RAW?.caf || [];
+  const emploi = window.CINOR_RAW?.emploi || [];
+  const permis = window.CINOR_RAW?.permis || [];
+  c.innerHTML = '<div class="subtabs" id="analyse-subtabs"><button class="subtab active" data-subtab="caf">💰 CAF</button><button class="subtab" data-subtab="emploi">🏗️ Emploi</button><button class="subtab" data-subtab="construction">🏘️ Construction</button><button class="subtab" data-subtab="croisements">🔗 Croisements</button></div>';
+  const tabs = c.querySelectorAll('#analyse-subtabs .subtab');
+  tabs.forEach(t => {
+    t.addEventListener('click', () => {
+      tabs.forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      renderAnalyseTab(c, t.dataset.subtab, { caf, emploi, permis });
+    });
+  });
+  renderAnalyseTab(c, 'caf', { caf, emploi, permis });
+}
+async function renderAnalyseTab(c, tab, data){
+  c.querySelectorAll(':scope > *:not(#analyse-subtabs)').forEach(el => el.remove());
+  if (tab === 'caf')          await analyseCaf(c, data.caf);
+  if (tab === 'emploi')       await analyseEmploi(c, data.emploi);
+  if (tab === 'construction') await analyseConstruction(c, data.permis);
+  if (tab === 'croisements')  await analyseCroisements(c, data);
+}
+async function analyseCaf(c, caf){
+  if (!caf.length){ c.innerHTML += '<div class="error">Données CAF non chargées</div>'; return; }
+  const parAnnee = {};
+  caf.forEach(r => {
+    const y = String(r.date).substring(0, 4);
+    if (!y || y.length !== 4) return;
+    if (!parAnnee[y]) parAnnee[y] = { sum: 0, count: 0, types: {} };
+    parAnnee[y].sum += r.nbbeneficiaires || 0;
+    parAnnee[y].count += 1;
+    const t = r.type_prestation || 'Autre';
+    parAnnee[y].types[t] = (parAnnee[y].types[t] || 0) + (r.nbbeneficiaires || 0);
+  });
+  const annees = Object.keys(parAnnee).sort();
+  const moyennes = annees.map(y => Math.round(parAnnee[y].sum / parAnnee[y].count));
+  const premier = moyennes[0];
+  const dernier = moyennes[moyennes.length - 1];
+  const evolution = ((dernier - premier) / premier * 100).toFixed(1);
+  const population = window.CINOR_RAW?.meta?.population || 216588;
+  const ratio = (dernier / population * 100).toFixed(1);
+  renderKPI(c, { value: dernier.toLocaleString('fr-FR'), label: 'Bénéficiaires CAF (2019)', source: 'Région' });
+  renderKPI(c, { value: '+' + evolution + '%', label: 'Évolution 1993-2019', source: 'Calculé' });
+  renderKPI(c, { value: ratio + '%', label: 'Part de la population', source: 'Calculé' });
+  renderKPI(c, { value: annees.length, label: 'Années couvertes', source: 'Région' });
+  renderChart(c, 'Évolution des bénéficiaires CAF (1993-2019)', 'line', {
+    labels: annees,
+    datasets: [{ label: 'Bénéficiaires (moyenne annuelle)', data: moyennes, borderColor: '#a855f7', backgroundColor: 'rgba(168,85,247,0.15)', fill: true, tension: 0.3, pointRadius: 4 }]
+  }, 'Région');
+  const anomalies = [];
+  for (let i = 1; i < moyennes.length; i++) {
+    const delta = (moyennes[i] - moyennes[i-1]) / moyennes[i-1] * 100;
+    if (Math.abs(delta) > 10) {
+      anomalies.push('<tr><td>' + annees[i] + '</td><td>' + (delta > 0 ? '+' : '') + delta.toFixed(1) + '%</td><td>' + parAnnee[annees[i]].count + ' mesures</td></tr>');
+    }
+  }
+  if (anomalies.length) {
+    renderCard(c, '⚠️ Anomalies détectées (> ±10 %)', '<table><thead><tr><th>Année</th><th>Variation</th><th>Nb mesures</th></tr></thead><tbody>' + anomalies.join('') + '</tbody></table>', 'Analyse');
+  }
+  renderTable(c, 'Évolution annuelle détaillée', annees.map((y, i) => ({
+    annee: y, benef: moyennes[i].toLocaleString('fr-FR'), mesures: parAnnee[y].count, types: Object.keys(parAnnee[y].types).length
+  })), [
+    { key: 'annee', label: 'Année' }, { key: 'benef', label: 'Bénéficiaires' },
+    { key: 'mesures', label: 'Nb mesures' }, { key: 'types', label: 'Types' }
+  ], 'Région');
+}
+async function analyseEmploi(c, emploi){
+  if (!emploi.length){ c.innerHTML += '<div class="error">Données emploi non chargées</div>'; return; }
+  const parAnneeCommune = {};
+  emploi.forEach(r => {
+    const y = String(r.date).substring(0, 4);
+    if (!y || y.length !== 4) return;
+    const cm = r.nom_de_la_commune || 'Inconnue';
+    if (!parAnneeCommune[y]) parAnneeCommune[y] = {};
+    if (!parAnneeCommune[y][cm]) parAnneeCommune[y][cm] = { sum: 0, count: 0, min: Infinity, max: -Infinity };
+    parAnneeCommune[y][cm].sum += r.inscrits || 0;
+    parAnneeCommune[y][cm].count += 1;
+    parAnneeCommune[y][cm].min = Math.min(parAnneeCommune[y][cm].min, r.inscrits || 0);
+    parAnneeCommune[y][cm].max = Math.max(parAnneeCommune[y][cm].max, r.inscrits || 0);
+  });
+  const annees = Object.keys(parAnneeCommune).filter(y => y <= '2022').sort();
+  const communes = ['ST DENIS', 'STE MARIE', 'STE SUZANNE'];
+  const derniereAnnee = annees[annees.length - 1];
+  let totalDerniere = 0;
+  Object.values(parAnneeCommune[derniereAnnee] || {}).forEach(v => totalDerniere += Math.round(v.sum / v.count));
+  renderKPI(c, { value: totalDerniere.toLocaleString('fr-FR'), label: 'Inscrits ' + derniereAnnee, source: 'CINOR' });
+  renderKPI(c, { value: annees.length, label: 'Années', source: 'CINOR' });
+  renderKPI(c, { value: communes.filter(cm => parAnneeCommune[derniereAnnee]?.[cm]).length, label: 'Communes', source: 'CINOR' });
+  const datasets = communes.map((cm, i) => ({
+    label: cm,
+    data: annees.map(y => { const v = parAnneeCommune[y]?.[cm]; return v ? Math.round(v.sum / v.count) : null; }),
+    borderColor: ['#00e5ff','#00ff88','#ffb800'][i],
+    backgroundColor: 'transparent', tension: 0.3, pointRadius: 4, spanGaps: true
+  })).filter(d => d.data.some(v => v !== null));
+  renderChart(c, 'Évolution des inscrits Pôle Emploi (2016-2022)', 'line', { labels: annees, datasets: datasets }, 'CINOR');
+  const rows = [];
+  annees.forEach(y => {
+    Object.entries(parAnneeCommune[y]).forEach(([cm, v]) => {
+      rows.push({ annee: y, commune: cm, moyenne: Math.round(v.sum / v.count).toLocaleString('fr-FR'), min: v.min.toLocaleString('fr-FR'), max: v.max.toLocaleString('fr-FR'), mesures: v.count });
+    });
+  });
+  renderTable(c, 'Détail par année et commune', rows, [
+    { key: 'annee', label: 'Année' }, { key: 'commune', label: 'Commune' },
+    { key: 'moyenne', label: 'Moyenne' }, { key: 'min', label: 'Min' },
+    { key: 'max', label: 'Max' }, { key: 'mesures', label: 'Mesures' }
+  ], 'CINOR');
+  if (parAnneeCommune['2026']) {
+    renderCard(c, '⚠️ Données 2026 incomplètes', '<p style="font-family:var(--font-mono);font-size:12px;color:var(--text-1)">Les données <strong>2026</strong> ne contiennent qu\'<strong>une seule mesure</strong> par commune. La chute apparente (-35 %) est un <strong>artefact statistique</strong>.</p>', 'Info');
+  }
+}
+async function analyseConstruction(c, permis){
+  if (!permis.length){ c.innerHTML += '<div class="error">Données permis non chargées</div>'; return; }
+  const nomsCommunes = { '97411': 'ST DENIS', '97418': 'STE MARIE', '97420': 'STE SUZANNE' };
+  const parAnnee = {};
+  permis.forEach(p => {
+    const y = String(p.date_reelle_autorisation || '').substring(0, 4);
+    if (!y || y.length !== 4 || isNaN(Number(y))) return;
+    if (y > '2022') return;
+    const cm = nomsCommunes[p.comm] || 'Autre';
+    if (!parAnnee[y]) parAnnee[y] = {};
+    if (!parAnnee[y][cm]) parAnnee[y][cm] = { nb_permis: 0, logements: 0, sociaux: 0, surface: 0 };
+    parAnnee[y][cm].nb_permis += 1;
+    parAnnee[y][cm].logements += parseInt(p.nb_lgt_tot_crees, 10) || 0;
+    parAnnee[y][cm].sociaux += parseInt(p.nb_lgt_pret_loc_social, 10) || 0;
+    parAnnee[y][cm].surface += parseFloat(p.surf_hab_creee) || 0;
+  });
+  const annees = Object.keys(parAnnee).sort();
+  const communes = ['ST DENIS', 'STE MARIE', 'STE SUZANNE'];
+  let totalLogts = 0, totalSociaux = 0, totalSurface = 0;
+  Object.values(parAnnee).forEach(annee => { Object.values(annee).forEach(v => { totalLogts += v.logements; totalSociaux += v.sociaux; totalSurface += v.surface; }); });
+  renderKPI(c, { value: totalLogts.toLocaleString('fr-FR'), label: 'Logements créés (2017-2022)', source: 'CINOR' });
+  renderKPI(c, { value: totalSociaux.toLocaleString('fr-FR'), label: 'Dont sociaux', source: 'CINOR' });
+  renderKPI(c, { value: Math.round(totalSociaux / totalLogts * 100) + '%', label: 'Part sociales', source: 'Calculé' });
+  renderKPI(c, { value: Math.round(totalSurface).toLocaleString('fr-FR') + ' m²', label: 'Surface créée', source: 'CINOR' });
+  renderChart(c, 'Logements créés par commune (2017-2022)', 'bar', {
+    labels: annees,
+    datasets: communes.map((cm, i) => ({ label: cm, data: annees.map(y => parAnnee[y]?.[cm]?.logements || 0), backgroundColor: ['#00e5ff','#00ff88','#ffb800'][i] }))
+  }, 'CINOR');
+  const indData = [], colData = [];
+  annees.forEach(y => {
+    let ind = 0, col = 0;
+    permis.filter(p => String(p.date_reelle_autorisation || '').startsWith(y)).forEach(p => {
+      ind += parseInt(p.nb_lgt_ind_crees, 10) || 0;
+      col += parseInt(p.nb_lgt_col_crees, 10) || 0;
+    });
+    indData.push(ind); colData.push(col);
+  });
+  renderChart(c, 'Individuel vs Collectif', 'bar', {
+    labels: annees,
+    datasets: [{ label: 'Individuel', data: indData, backgroundColor: '#ffb800' }, { label: 'Collectif', data: colData, backgroundColor: '#00e5ff' }]
+  }, 'CINOR');
+  const rows = [];
+  annees.forEach(y => { communes.forEach(cm => { const v = parAnnee[y]?.[cm]; if (v) rows.push({ annee: y, commune: cm, nb: v.nb_permis, logements: v.logements.toLocaleString('fr-FR'), sociaux: v.sociaux.toLocaleString('fr-FR'), surface: Math.round(v.surface).toLocaleString('fr-FR') }); }); });
+  renderTable(c, 'Détail construction', rows, [
+    { key: 'annee', label: 'Année' }, { key: 'commune', label: 'Commune' },
+    { key: 'nb', label: 'Nb permis' }, { key: 'logements', label: 'Logements' },
+    { key: 'sociaux', label: 'Sociaux' }, { key: 'surface', label: 'Surface (m²)' }
+  ], 'CINOR');
+}
+async function analyseCroisements(c, data){
+  const { caf, permis } = data;
+  const alsParAnnee = {};
+  caf.forEach(r => {
+    if (!r.type_prestation?.toLowerCase().includes('logement sociale')) return;
+    const y = String(r.date).substring(0, 4);
+    if (!alsParAnnee[y]) alsParAnnee[y] = [];
+    alsParAnnee[y].push(r.nbbeneficiaires);
+  });
+  const sociauxParAnnee = {};
+  permis.forEach(p => {
+    const y = String(p.date_reelle_autorisation || '').substring(0, 4);
+    if (!y || y.length !== 4) return;
+    sociauxParAnnee[y] = (sociauxParAnnee[y] || 0) + (parseInt(p.nb_lgt_pret_loc_social, 10) || 0);
+  });
+  const annees = Object.keys(alsParAnnee).filter(y => y >= '2017' && y <= '2022').sort();
+  const alsVals = annees.map(y => Math.round(alsParAnnee[y].reduce((s,v) => s+v, 0) / alsParAnnee[y].length));
+  const sociauxVals = annees.map(y => sociauxParAnnee[y] || 0);
+  if (alsVals.length) {
+    const ratio = (alsVals[alsVals.length - 1] / (sociauxVals[sociauxVals.length - 1] || 1)).toFixed(0);
+    renderKPI(c, { value: ratio + ' ans', label: 'Pour loger tous les ALS', source: 'Calculé' });
+    renderKPI(c, { value: alsVals[alsVals.length - 1].toLocaleString('fr-FR'), label: 'Bénéficiaires ALS (2022)', source: 'CAF' });
+    renderKPI(c, { value: sociauxVals[sociauxVals.length - 1], label: 'Logements sociaux (2022)', source: 'CINOR' });
+  }
+  renderCard(c, '🔗 Croisement : ALS vs Logements sociaux', '<canvas></canvas>', 'Analyse');
+  const canvas = c.querySelector('canvas');
+  if (canvas) {
+    const existing = Chart.getChart(canvas);
+    if (existing) existing.destroy();
+    CHARTS['ALS vs sociaux'] = new Chart(canvas, {
+      type: 'line',
+      data: {
+        labels: annees,
+        datasets: [
+          { label: 'Bénéficiaires ALS', data: alsVals, borderColor: '#a855f7', backgroundColor: 'rgba(168,85,247,0.15)', yAxisID: 'y', fill: true, tension: 0.3, pointRadius: 5 },
+          { label: 'Logements sociaux créés', data: sociauxVals, borderColor: '#00ff88', backgroundColor: 'rgba(0,255,136,0.4)', yAxisID: 'y1', type: 'bar' }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom', labels: { color: '#8ba3c7', font: { size: 11 } } } },
+        scales: {
+          y: { position: 'left', ticks: { color: '#a855f7' }, grid: { color: '#1c2940' } },
+          y1: { position: 'right', ticks: { color: '#00ff88' }, grid: { drawOnChartArea: false } },
+          x: { ticks: { color: '#8ba3c7' }, grid: { color: '#1c2940' } }
+        }
+      }
+    });
+  }
+  if (alsVals.length && sociauxVals.length) {
+    const dernierALS = alsVals[alsVals.length - 1];
+    const dernierSoc = sociauxVals[sociauxVals.length - 1];
+    renderCard(c, '💡 Interprétation', '<p style="font-family:var(--font-mono);font-size:12px;line-height:1.8;color:var(--text-1)">Avec <strong style="color:#a855f7">' + dernierALS.toLocaleString('fr-FR') + ' bénéficiaires ALS</strong> et seulement <strong style="color:#00ff88">' + dernierSoc + ' logements sociaux créés</strong>, il faudrait <strong style="color:var(--cyan)">' + Math.round(dernierALS / (dernierSoc || 1)) + ' ans</strong> au rythme actuel.</p>', 'Analyse');
+  }
+}
+
+async function moduleAbout(c){
+  renderCard(c, 'ℹ️ À propos du dashboard CINOR', `
+    <div style="font-family:var(--font-mono);font-size:12px;line-height:1.8">
+      <p style="color:var(--text-1);margin-bottom:14px">
+        Ce dashboard agrège les données publiques disponibles sur la
+        <strong>Communauté Intercommunale du Nord de La Réunion (CINOR)</strong>.
+      </p>
+
+      <h4 style="color:var(--cyan);margin:14px 0 8px">🏛️ Communes membres</h4>
+      <ul style="color:var(--text-1);margin-left:20px">
+        <li>Saint-Denis</li>
+        <li>Sainte-Marie</li>
+        <li>Sainte-Suzanne</li>
+      </ul>
+
+      <h4 style="color:var(--cyan);margin:14px 0 8px">📊 Sources de données</h4>
+      <ul style="color:var(--text-1);margin-left:20px">
+        <li>GTFS Citalis — transport.data.gouv.fr</li>
+        <li>Qualité air — data.gouv.fr</li>
+        <li>INSEE — RP 2022</li>
+        <li>ORS Réunion — Portrait 2026</li>
+        <li>CINOR — cinor.re</li>
+      </ul>
+
+      <h4 style="color:var(--cyan);margin:14px 0 8px">⚠️ Limites</h4>
+      <p style="color:var(--text-2);font-size:11px">
+        La CINOR ne dispose pas de portail Open Data dédié. Les données sont extraites
+        manuellement des rapports officiels et des APIs régionales.
+      </p>
+    </div>
+  `, 'info');
+}
+
+/* ============ NAV ============ */
+const MODULES = {overview:moduleOverview,transport:moduleTransport,air:moduleAir,habitat:moduleHabitat,sante:moduleSante,emploi:moduleEmploi,sports:moduleSports,caf:moduleCaf,social:moduleSocial,analyse:moduleAnalyse,gouvernance:moduleGouvernance,about:moduleAbout};
+
+function buildNav(){
+  const nav = document.getElementById('tabs');
+  const list = document.getElementById('sbList');
+  nav.innerHTML = ''; list.innerHTML = '';
+  Object.keys(MODULES).forEach(key => {
+    const btn = document.createElement('button');
+    btn.className = 'tab';
+    btn.dataset.tab = key;
+    btn.innerHTML = `${ICONS[key]} ${LABELS[key]}`;
+    btn.addEventListener('click', () => switchModule(key));
+    nav.appendChild(btn);
+
+    const item = document.createElement('div');
+    item.className = 'sb-item';
+    item.dataset.module = key;
+    item.innerHTML = `<div class="sb-item-h"><span class="sb-item-icon">${ICONS[key]}</span><span class="sb-item-name">${LABELS[key]}</span></div>`;
+    item.addEventListener('click', () => switchModule(key));
+    list.appendChild(item);
+  });
+}
+
+async function switchModule(key){
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.tab === key));
+  document.querySelectorAll('.sb-item').forEach(el => el.classList.toggle('active', el.dataset.module === key));
+
+  document.getElementById('activeIcon').textContent = ICONS[key];
+  document.getElementById('activeName').textContent = LABELS[key];
+  document.getElementById('ivName').textContent = LABELS[key];
+
+  Object.values(CHARTS).forEach(c => { try { c.destroy(); } catch(e){} });
+  Object.keys(CHARTS).forEach(k => delete CHARTS[k]);
+
+  const dash = DASH();
+  dash.innerHTML = '<div class="loader"><div class="spin"></div>Chargement…</div>';
+
+  await MODULES[key](dash);
+  const t = new Date().toLocaleTimeString('fr-FR', {hour:'2-digit', minute:'2-digit'});
+  document.getElementById('tbUpdate').textContent = t;
+  document.getElementById('sysUpdate').textContent = t;
+}
+
+async function init(){
+  try {
+    const res = { json: async () => (window.CINOR_RAW?.meta || await fetch('data/cinor-data.json').then(r => r.json())) };
+    DATA = await res.json();
+    console.log('✅ Données CINOR chargées');
+  } catch(e){
+    console.warn('⚠️ Impossible de charger data/cinor-data.json :', e.message);
+  }
+  buildNav();
+  switchModule('overview');
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
