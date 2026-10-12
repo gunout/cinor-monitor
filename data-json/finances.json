@@ -1,0 +1,1267 @@
+{
+  "meta": {
+    "source": "OFGL - data.ofgl.fr",
+    "dataset": "ofgl-base-ei",
+    "siren": "249740119",
+    "collectivite": "CINOR",
+    "perimetre": "GFP consolidé (GFP + communes membres)",
+    "exercices_disponibles": [
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "date_extraction": "2026-10-13"
+  },
+  "indicateurs_cles": {
+    "Recettes de fonctionnement": {
+      "valeur_2025": 575.45,
+      "valeur_2024": 577.92,
+      "evolution_pct": -0.4,
+      "euros_par_habitant_2025": 2630.03
+    },
+    "Dépenses de fonctionnement": {
+      "valeur_2025": 485.72,
+      "valeur_2024": 481.47,
+      "evolution_pct": 0.9,
+      "euros_par_habitant_2025": 2219.92
+    },
+    "Frais de personnel": {
+      "valeur_2025": 201.01,
+      "valeur_2024": 196.73,
+      "evolution_pct": 2.2,
+      "euros_par_habitant_2025": 918.68
+    },
+    "Achats et charges externes": {
+      "valeur_2025": 180.94,
+      "valeur_2024": 181.37,
+      "evolution_pct": -0.2,
+      "euros_par_habitant_2025": 826.95
+    },
+    "Epargne de gestion": {
+      "valeur_2025": 98.63,
+      "valeur_2024": 106.48,
+      "evolution_pct": -7.4,
+      "euros_par_habitant_2025": 450.76
+    },
+    "Epargne brute": {
+      "valeur_2025": 89.73,
+      "valeur_2024": 96.45,
+      "evolution_pct": -7.0,
+      "euros_par_habitant_2025": 410.11
+    },
+    "Epargne nette": {
+      "valeur_2025": 51.4,
+      "valeur_2024": 49.75,
+      "evolution_pct": 3.3,
+      "euros_par_habitant_2025": 234.93
+    },
+    "Encours de dette": {
+      "valeur_2025": 383.86,
+      "valeur_2024": 396.97,
+      "evolution_pct": -3.3,
+      "euros_par_habitant_2025": 1754.4
+    },
+    "Annuité de la dette": {
+      "valeur_2025": 47.88,
+      "valeur_2024": 56.97,
+      "evolution_pct": -16.0,
+      "euros_par_habitant_2025": 218.84
+    },
+    "Dépenses d'équipement": {
+      "valeur_2025": 128.86,
+      "valeur_2024": 127.15,
+      "evolution_pct": 1.3,
+      "euros_par_habitant_2025": 588.95
+    },
+    "Dépenses d'investissement": {
+      "valeur_2025": 170.18,
+      "valeur_2024": 183.17,
+      "evolution_pct": -7.1,
+      "euros_par_habitant_2025": 777.8
+    },
+    "Recettes d'investissement": {
+      "valeur_2025": 76.72,
+      "valeur_2024": 82.56,
+      "evolution_pct": -7.1,
+      "euros_par_habitant_2025": 350.63
+    },
+    "Dotation globale de fonctionnement": {
+      "valeur_2025": 71.6,
+      "valeur_2024": 68.32,
+      "evolution_pct": 4.8,
+      "euros_par_habitant_2025": 327.23
+    },
+    "Impôts et taxes": {
+      "valeur_2025": 414.15,
+      "valeur_2024": 415.41,
+      "evolution_pct": -0.3,
+      "euros_par_habitant_2025": 1892.8
+    },
+    "Versement transport": {
+      "valeur_2025": 44.02,
+      "valeur_2024": 44.49,
+      "evolution_pct": -1.1,
+      "euros_par_habitant_2025": 201.21
+    },
+    "Capacité ou besoin de financement": {
+      "valeur_2025": 9.37,
+      "valeur_2024": 16.01,
+      "evolution_pct": -41.5,
+      "euros_par_habitant_2025": 42.82
+    },
+    "Fonds de roulement": {
+      "valeur_2025": 60.54,
+      "valeur_2024": 64.28,
+      "evolution_pct": -5.8,
+      "euros_par_habitant_2025": 276.71
+    }
+  },
+  "series_temporelles": {
+    "Recettes de fonctionnement": {
+      "2018": 450.27,
+      "2019": 452.51,
+      "2020": 456.04,
+      "2021": 481.4,
+      "2022": 513.47,
+      "2023": 549.04,
+      "2024": 577.92,
+      "2025": 575.45
+    },
+    "Dépenses de fonctionnement": {
+      "2018": 401.4,
+      "2019": 402.08,
+      "2020": 400.71,
+      "2021": 417.04,
+      "2022": 439.11,
+      "2023": 459.13,
+      "2024": 481.47,
+      "2025": 485.72
+    },
+    "Frais de personnel": {
+      "2018": 188.56,
+      "2019": 188.26,
+      "2020": 186.3,
+      "2021": 186.48,
+      "2022": 189.84,
+      "2023": 191.52,
+      "2024": 196.73,
+      "2025": 201.01
+    },
+    "Achats et charges externes": {
+      "2018": 129.47,
+      "2019": 128.32,
+      "2020": 129.13,
+      "2021": 140.62,
+      "2022": 152.87,
+      "2023": 169.39,
+      "2024": 181.37,
+      "2025": 180.94
+    },
+    "Epargne de gestion": {
+      "2018": 58.71,
+      "2019": 59.17,
+      "2020": 60.56,
+      "2021": 72.48,
+      "2022": 85.82,
+      "2023": 100.63,
+      "2024": 106.48,
+      "2025": 98.63
+    },
+    "Epargne brute": {
+      "2018": 48.87,
+      "2019": 50.43,
+      "2020": 55.33,
+      "2021": 64.37,
+      "2022": 74.36,
+      "2023": 89.9,
+      "2024": 96.45,
+      "2025": 89.73
+    },
+    "Epargne nette": {
+      "2018": 19.82,
+      "2019": 19.46,
+      "2020": 24.63,
+      "2021": 33.1,
+      "2022": 34.51,
+      "2023": 55.62,
+      "2024": 49.75,
+      "2025": 51.4
+    },
+    "Encours de dette": {
+      "2018": 386.71,
+      "2019": 397.12,
+      "2020": 415.38,
+      "2021": 431.9,
+      "2022": 428.56,
+      "2023": 416.91,
+      "2024": 396.97,
+      "2025": 383.86
+    },
+    "Annuité de la dette": {
+      "2018": 37.48,
+      "2019": 39.04,
+      "2020": 37.71,
+      "2021": 39.63,
+      "2022": 47.15,
+      "2023": 44.05,
+      "2024": 56.97,
+      "2025": 47.88
+    },
+    "Dépenses d'équipement": {
+      "2018": 86.85,
+      "2019": 93.98,
+      "2020": 114.36,
+      "2021": 125.29,
+      "2022": 99.14,
+      "2023": 116.13,
+      "2024": 127.15,
+      "2025": 128.86
+    },
+    "Dépenses d'investissement": {
+      "2018": 119.88,
+      "2019": 133.75,
+      "2020": 148.25,
+      "2021": 164.48,
+      "2022": 146.75,
+      "2023": 154.41,
+      "2024": 183.17,
+      "2025": 170.18
+    },
+    "Recettes d'investissement": {
+      "2018": 88.26,
+      "2019": 78.16,
+      "2020": 93.67,
+      "2021": 105.2,
+      "2022": 77.22,
+      "2023": 81.66,
+      "2024": 82.56,
+      "2025": 76.72
+    },
+    "Dotation globale de fonctionnement": {
+      "2018": 52.2,
+      "2019": 53.04,
+      "2020": 55.12,
+      "2021": 58.26,
+      "2022": 62.24,
+      "2023": 65.12,
+      "2024": 68.32,
+      "2025": 71.6
+    },
+    "Impôts et taxes": {
+      "2018": 328.94,
+      "2019": 332.27,
+      "2020": 336.25,
+      "2021": 351.73,
+      "2022": 370.23,
+      "2023": 402.78,
+      "2024": 415.41,
+      "2025": 414.15
+    },
+    "Versement transport": {
+      "2018": 37.95,
+      "2019": 36.65,
+      "2020": 36.75,
+      "2021": 38.63,
+      "2022": 42.45,
+      "2023": 45.92,
+      "2024": 44.49,
+      "2025": 44.02
+    },
+    "Taxe d'enlèvement des ordures ménagères": {},
+    "Capacité ou besoin de financement": {
+      "2018": -0.23,
+      "2019": -15.51,
+      "2020": -17.51,
+      "2021": -11.44,
+      "2022": 8.17,
+      "2023": 28.85,
+      "2024": 16.01,
+      "2025": 9.37
+    },
+    "Fonds de roulement": {
+      "2018": 46.98,
+      "2019": 41.82,
+      "2020": 42.57,
+      "2021": 47.69,
+      "2022": 52.52,
+      "2023": 68.44,
+      "2024": 64.28,
+      "2025": 60.54
+    }
+  },
+  "par_exercice": {
+    "2025": {
+      "Versement transport": {
+        "montant_gfp": 44023986.59,
+        "montant_communes": 0.0,
+        "montant_consolide": 44023986.59,
+        "montant_millions": 44.02,
+        "euros_par_habitant": 201.21
+      },
+      "Epargne brute": {
+        "montant_gfp": 32110959.98,
+        "montant_communes": 57622274.21,
+        "montant_consolide": 89733234.19,
+        "montant_millions": 89.73,
+        "euros_par_habitant": 410.11
+      },
+      "Recettes de fonctionnement": {
+        "montant_gfp": 208769057.02,
+        "montant_communes": 369550779.12,
+        "montant_consolide": 575453142.87,
+        "montant_millions": 575.45,
+        "euros_par_habitant": 2630.03
+      },
+      "Epargne de gestion": {
+        "montant_gfp": 35757466.28,
+        "montant_communes": 62868510.64,
+        "montant_consolide": 98625976.92,
+        "montant_millions": 98.63,
+        "euros_par_habitant": 450.76
+      },
+      "Annuité de la dette": {
+        "montant_gfp": 18820715.74,
+        "montant_communes": 29061205.05,
+        "montant_consolide": 47881920.79,
+        "montant_millions": 47.88,
+        "euros_par_habitant": 218.84
+      },
+      "Recettes d'investissement": {
+        "montant_gfp": 34911602.8,
+        "montant_communes": 42068505.09,
+        "montant_consolide": 76719101.3,
+        "montant_millions": 76.72,
+        "euros_par_habitant": 350.63
+      },
+      "Impôts et taxes": {
+        "montant_gfp": 146781299.71,
+        "montant_communes": 267365845.04,
+        "montant_consolide": 414147144.75,
+        "montant_millions": 414.15,
+        "euros_par_habitant": 1892.8
+      },
+      "Fonds de roulement": {
+        "montant_gfp": 20316405.7,
+        "montant_communes": 40228304.75,
+        "montant_consolide": 60544710.45,
+        "montant_millions": 60.54,
+        "euros_par_habitant": 276.71
+      },
+      "Encours de dette": {
+        "montant_gfp": 202750870.49,
+        "montant_communes": 181114047.73,
+        "montant_consolide": 383864918.22,
+        "montant_millions": 383.86,
+        "euros_par_habitant": 1754.4
+      },
+      "Capacité ou besoin de financement": {
+        "montant_gfp": -2108484.42,
+        "montant_communes": 11478284.84,
+        "montant_consolide": 9369800.41999999,
+        "montant_millions": 9.37,
+        "euros_par_habitant": 42.82
+      },
+      "Epargne nette": {
+        "montant_gfp": 17155612.95,
+        "montant_communes": 34247050.61,
+        "montant_consolide": 51402663.56,
+        "montant_millions": 51.4,
+        "euros_par_habitant": 234.93
+      },
+      "Dotation globale de fonctionnement": {
+        "montant_gfp": 12245853.0,
+        "montant_communes": 59352103.56,
+        "montant_consolide": 71597956.56,
+        "montant_millions": 71.6,
+        "euros_par_habitant": 327.23
+      },
+      "Achats et charges externes": {
+        "montant_gfp": 109853374.93,
+        "montant_communes": 71756911.57,
+        "montant_consolide": 180936786.5,
+        "montant_millions": 180.94,
+        "euros_par_habitant": 826.95
+      },
+      "Dépenses de fonctionnement": {
+        "montant_gfp": 176658097.04,
+        "montant_communes": 311928504.91,
+        "montant_consolide": 485719908.68,
+        "montant_millions": 485.72,
+        "euros_par_habitant": 2219.92
+      },
+      "Frais de personnel": {
+        "montant_gfp": 29734678.19,
+        "montant_communes": 172964458.09,
+        "montant_consolide": 201008943.01,
+        "montant_millions": 201.01,
+        "euros_par_habitant": 918.68
+      },
+      "Dépenses d'équipement": {
+        "montant_gfp": 53334632.82,
+        "montant_communes": 75528859.3,
+        "montant_consolide": 128863492.12,
+        "montant_millions": 128.86,
+        "euros_par_habitant": 588.95
+      },
+      "Dépenses d'investissement": {
+        "montant_gfp": 68881298.96,
+        "montant_communes": 101564199.31,
+        "montant_consolide": 170184491.68,
+        "montant_millions": 170.18,
+        "euros_par_habitant": 777.8
+      }
+    },
+    "2024": {
+      "Epargne nette": {
+        "montant_gfp": 22812224.11,
+        "montant_communes": 26937189.99,
+        "montant_consolide": 49749414.1,
+        "montant_millions": 49.75,
+        "euros_par_habitant": 230.76
+      },
+      "Impôts et taxes": {
+        "montant_gfp": 145963264.0,
+        "montant_communes": 269451735.7,
+        "montant_consolide": 415414999.7,
+        "montant_millions": 415.41,
+        "euros_par_habitant": 1926.89
+      },
+      "Dépenses d'investissement": {
+        "montant_gfp": 67722480.4,
+        "montant_communes": 115444665.26,
+        "montant_consolide": 183167145.66,
+        "montant_millions": 183.17,
+        "euros_par_habitant": 849.62
+      },
+      "Dotation globale de fonctionnement": {
+        "montant_gfp": 11508551.0,
+        "montant_communes": 56808044.42,
+        "montant_consolide": 68316595.42,
+        "montant_millions": 68.32,
+        "euros_par_habitant": 316.88
+      },
+      "Fonds de roulement": {
+        "montant_gfp": 22175141.88,
+        "montant_communes": 42101724.76,
+        "montant_consolide": 64276866.64,
+        "montant_millions": 64.28,
+        "euros_par_habitant": 298.15
+      },
+      "Annuité de la dette": {
+        "montant_gfp": 19145308.3,
+        "montant_communes": 37826144.53,
+        "montant_consolide": 56971452.83,
+        "montant_millions": 56.97,
+        "euros_par_habitant": 264.26
+      },
+      "Versement transport": {
+        "montant_gfp": 44491587.23,
+        "montant_communes": 0.0,
+        "montant_consolide": 44491587.23,
+        "montant_millions": 44.49,
+        "euros_par_habitant": 206.37
+      },
+      "Achats et charges externes": {
+        "montant_gfp": 109864010.74,
+        "montant_communes": 72065373.59,
+        "montant_consolide": 181372884.33,
+        "montant_millions": 181.37,
+        "euros_par_habitant": 841.29
+      },
+      "Capacité ou besoin de financement": {
+        "montant_gfp": 10373847.22,
+        "montant_communes": 5639875.03999997,
+        "montant_consolide": 16013722.26,
+        "montant_millions": 16.01,
+        "euros_par_habitant": 74.28
+      },
+      "Epargne brute": {
+        "montant_gfp": 38057630.06,
+        "montant_communes": 58389299.07,
+        "montant_consolide": 96446929.13,
+        "montant_millions": 96.45,
+        "euros_par_habitant": 447.37
+      },
+      "Frais de personnel": {
+        "montant_gfp": 28639548.9,
+        "montant_communes": 169697073.84,
+        "montant_consolide": 196727807.06,
+        "montant_millions": 196.73,
+        "euros_par_habitant": 912.52
+      },
+      "Epargne de gestion": {
+        "montant_gfp": 41950705.85,
+        "montant_communes": 64528024.32,
+        "montant_consolide": 106478730.17,
+        "montant_millions": 106.48,
+        "euros_par_habitant": 493.9
+      },
+      "Dépenses de fonctionnement": {
+        "montant_gfp": 173313372.38,
+        "montant_communes": 310918311.64,
+        "montant_consolide": 481471368.34,
+        "montant_millions": 481.47,
+        "euros_par_habitant": 2233.29
+      },
+      "Dépenses d'équipement": {
+        "montant_gfp": 51488018.78,
+        "montant_communes": 75666632.91,
+        "montant_consolide": 127154651.69,
+        "montant_millions": 127.15,
+        "euros_par_habitant": 589.8
+      },
+      "Encours de dette": {
+        "montant_gfp": 202501122.25,
+        "montant_communes": 194465752.58,
+        "montant_consolide": 396966874.83,
+        "montant_millions": 396.97,
+        "euros_par_habitant": 1841.32
+      },
+      "Recettes de fonctionnement": {
+        "montant_gfp": 211371002.44,
+        "montant_communes": 369307610.71,
+        "montant_consolide": 577918297.47,
+        "montant_millions": 577.92,
+        "euros_par_habitant": 2680.66
+      },
+      "Recettes d'investissement": {
+        "montant_gfp": 37799080.28,
+        "montant_communes": 44757760.15,
+        "montant_consolide": 82556840.43,
+        "montant_millions": 82.56,
+        "euros_par_habitant": 382.94
+      }
+    },
+    "2023": {
+      "Recettes d'investissement": {
+        "montant_gfp": 39517434.07,
+        "montant_communes": 42138387.4,
+        "montant_consolide": 81655821.47,
+        "montant_millions": 81.66,
+        "euros_par_habitant": 382.36
+      },
+      "Fonds de roulement": {
+        "montant_gfp": 14040911.94,
+        "montant_communes": 54399330.8,
+        "montant_consolide": 68440242.74,
+        "montant_millions": 68.44,
+        "euros_par_habitant": 320.47
+      },
+      "Dépenses de fonctionnement": {
+        "montant_gfp": 166533630.19,
+        "montant_communes": 295351939.9,
+        "montant_consolide": 459133859.35,
+        "montant_millions": 459.13,
+        "euros_par_habitant": 2149.91
+      },
+      "Epargne nette": {
+        "montant_gfp": 17006837.5,
+        "montant_communes": 38610692.73,
+        "montant_consolide": 55617530.23,
+        "montant_millions": 55.62,
+        "euros_par_habitant": 260.43
+      },
+      "Impôts et taxes": {
+        "montant_gfp": 140100381.75,
+        "montant_communes": 262683979.01,
+        "montant_consolide": 402784360.76,
+        "montant_millions": 402.78,
+        "euros_par_habitant": 1886.05
+      },
+      "Recettes de fonctionnement": {
+        "montant_gfp": 198216755.13,
+        "montant_communes": 353572735.13,
+        "montant_consolide": 549037779.52,
+        "montant_millions": 549.04,
+        "euros_par_habitant": 2570.88
+      },
+      "Encours de dette": {
+        "montant_gfp": 204740739.53,
+        "montant_communes": 212167336.88,
+        "montant_consolide": 416908076.41,
+        "montant_millions": 416.91,
+        "euros_par_habitant": 1952.18
+      },
+      "Epargne de gestion": {
+        "montant_gfp": 35346051.95,
+        "montant_communes": 65287629.05,
+        "montant_consolide": 100633681.0,
+        "montant_millions": 100.63,
+        "euros_par_habitant": 471.22
+      },
+      "Frais de personnel": {
+        "montant_gfp": 25611551.85,
+        "montant_communes": 167421173.37,
+        "montant_consolide": 191522414.48,
+        "montant_millions": 191.52,
+        "euros_par_habitant": 896.81
+      },
+      "Versement transport": {
+        "montant_gfp": 45918492.63,
+        "montant_communes": 0.0,
+        "montant_consolide": 45918492.63,
+        "montant_millions": 45.92,
+        "euros_par_habitant": 215.01
+      },
+      "Dépenses d'équipement": {
+        "montant_gfp": 49666811.98,
+        "montant_communes": 66465012.24,
+        "montant_consolide": 116131824.22,
+        "montant_millions": 116.13,
+        "euros_par_habitant": 543.79
+      },
+      "Dotation globale de fonctionnement": {
+        "montant_gfp": 10830928.0,
+        "montant_communes": 54286476.0,
+        "montant_consolide": 65117404.0,
+        "montant_millions": 65.12,
+        "euros_par_habitant": 304.91
+      },
+      "Annuité de la dette": {
+        "montant_gfp": 18505113.2,
+        "montant_communes": 25546757.07,
+        "montant_consolide": 44051870.27,
+        "montant_millions": 44.05,
+        "euros_par_habitant": 206.27
+      },
+      "Dépenses d'investissement": {
+        "montant_gfp": 65208375.04,
+        "montant_communes": 89198522.04,
+        "montant_consolide": 154406897.08,
+        "montant_millions": 154.41,
+        "euros_par_habitant": 723.01
+      },
+      "Capacité ou besoin de financement": {
+        "montant_gfp": 10657222.22,
+        "montant_communes": 18190763.09,
+        "montant_consolide": 28847985.31,
+        "montant_millions": 28.85,
+        "euros_par_habitant": 135.08
+      },
+      "Epargne brute": {
+        "montant_gfp": 31683124.94,
+        "montant_communes": 58220795.23,
+        "montant_consolide": 89903920.17,
+        "montant_millions": 89.9,
+        "euros_par_habitant": 420.98
+      },
+      "Achats et charges externes": {
+        "montant_gfp": 106155660.15,
+        "montant_communes": 63933745.14,
+        "montant_consolide": 169393005.29,
+        "montant_millions": 169.39,
+        "euros_par_habitant": 793.19
+      }
+    },
+    "2022": {
+      "Frais de personnel": {
+        "montant_gfp": 24912995.01,
+        "montant_communes": 166059516.01,
+        "montant_consolide": 189841261.02,
+        "montant_millions": 189.84,
+        "euros_par_habitant": 886.67
+      },
+      "Epargne nette": {
+        "montant_gfp": 108851.749999994,
+        "montant_communes": 34402936.83,
+        "montant_consolide": 34511788.5799999,
+        "montant_millions": 34.51,
+        "euros_par_habitant": 161.19
+      },
+      "Recettes d'investissement": {
+        "montant_gfp": 44303294.87,
+        "montant_communes": 33070184.38,
+        "montant_consolide": 77217724.73,
+        "montant_millions": 77.22,
+        "euros_par_habitant": 360.65
+      },
+      "Impôts et taxes": {
+        "montant_gfp": 117413610.64,
+        "montant_communes": 252815012.99,
+        "montant_consolide": 370228623.63,
+        "montant_millions": 370.23,
+        "euros_par_habitant": 1729.19
+      },
+      "Dépenses d'équipement": {
+        "montant_gfp": 45954879.2,
+        "montant_communes": 53185825.04,
+        "montant_consolide": 99140704.24,
+        "montant_millions": 99.14,
+        "euros_par_habitant": 463.05
+      },
+      "Epargne brute": {
+        "montant_gfp": 21534959.0,
+        "montant_communes": 52826187.94,
+        "montant_consolide": 74361146.94,
+        "montant_millions": 74.36,
+        "euros_par_habitant": 347.31
+      },
+      "Versement transport": {
+        "montant_gfp": 42452580.16,
+        "montant_communes": 0.0,
+        "montant_consolide": 42452580.16,
+        "montant_millions": 42.45,
+        "euros_par_habitant": 198.28
+      },
+      "Dépenses d'investissement": {
+        "montant_gfp": 69069201.34,
+        "montant_communes": 77837821.5,
+        "montant_consolide": 146751268.32,
+        "montant_millions": 146.75,
+        "euros_par_habitant": 685.42
+      },
+      "Fonds de roulement": {
+        "montant_gfp": 8048727.97,
+        "montant_communes": 44466971.73,
+        "montant_consolide": 52515699.7,
+        "montant_millions": 52.52,
+        "euros_par_habitant": 245.28
+      },
+      "Dépenses de fonctionnement": {
+        "montant_gfp": 149773307.26,
+        "montant_communes": 291512373.92,
+        "montant_consolide": 439106431.18,
+        "montant_millions": 439.11,
+        "euros_par_habitant": 2050.89
+      },
+      "Capacité ou besoin de financement": {
+        "montant_gfp": -7308406.55,
+        "montant_communes": 15481801.93,
+        "montant_consolide": 8173395.37999996,
+        "montant_millions": 8.17,
+        "euros_par_habitant": 38.17
+      },
+      "Annuité de la dette": {
+        "montant_gfp": 24561385.22,
+        "montant_communes": 22593103.9,
+        "montant_consolide": 47154489.12,
+        "montant_millions": 47.15,
+        "euros_par_habitant": 220.24
+      },
+      "Dotation globale de fonctionnement": {
+        "montant_gfp": 10540608.0,
+        "montant_communes": 51695540.0,
+        "montant_consolide": 62236148.0,
+        "montant_millions": 62.24,
+        "euros_par_habitant": 290.68
+      },
+      "Epargne de gestion": {
+        "montant_gfp": 24569405.58,
+        "montant_communes": 61246571.25,
+        "montant_consolide": 85815976.83,
+        "montant_millions": 85.82,
+        "euros_par_habitant": 400.81
+      },
+      "Recettes de fonctionnement": {
+        "montant_gfp": 171308266.26,
+        "montant_communes": 344338561.86,
+        "montant_consolide": 513467578.12,
+        "montant_millions": 513.47,
+        "euros_par_habitant": 2398.2
+      },
+      "Encours de dette": {
+        "montant_gfp": 159662561.64,
+        "montant_communes": 268895035.37,
+        "montant_consolide": 428557597.01,
+        "montant_millions": 428.56,
+        "euros_par_habitant": 2001.62
+      },
+      "Achats et charges externes": {
+        "montant_gfp": 93333623.07,
+        "montant_communes": 60077964.65,
+        "montant_consolide": 152873587.72,
+        "montant_millions": 152.87,
+        "euros_par_habitant": 714.01
+      }
+    },
+    "2021": {
+      "Encours de dette": {
+        "montant_gfp": 142746755.64,
+        "montant_communes": 289156633.44,
+        "montant_consolide": 431903389.08,
+        "montant_millions": 431.9,
+        "euros_par_habitant": 2060.68
+      },
+      "Fonds de roulement": {
+        "montant_gfp": 10801624.75,
+        "montant_communes": 36886471.91,
+        "montant_consolide": 47688096.66,
+        "montant_millions": 47.69,
+        "euros_par_habitant": 227.53
+      },
+      "Annuité de la dette": {
+        "montant_gfp": 14773512.26,
+        "montant_communes": 24855002.51,
+        "montant_consolide": 39628514.77,
+        "montant_millions": 39.63,
+        "euros_par_habitant": 189.07
+      },
+      "Frais de personnel": {
+        "montant_gfp": 23584943.99,
+        "montant_communes": 163980817.25,
+        "montant_consolide": 186480761.24,
+        "montant_millions": 186.48,
+        "euros_par_habitant": 889.73
+      },
+      "Impôts et taxes": {
+        "montant_gfp": 109682948.47,
+        "montant_communes": 242045166.2,
+        "montant_consolide": 351728114.67,
+        "montant_millions": 351.73,
+        "euros_par_habitant": 1678.15
+      },
+      "Achats et charges externes": {
+        "montant_gfp": 84160549.2,
+        "montant_communes": 56749168.71,
+        "montant_consolide": 140619717.91,
+        "montant_millions": 140.62,
+        "euros_par_habitant": 670.92
+      },
+      "Epargne de gestion": {
+        "montant_gfp": 28513654.42,
+        "montant_communes": 43968574.57,
+        "montant_consolide": 72482228.99,
+        "montant_millions": 72.48,
+        "euros_par_habitant": 345.82
+      },
+      "Versement transport": {
+        "montant_gfp": 38629500.23,
+        "montant_communes": 0.0,
+        "montant_consolide": 38629500.23,
+        "montant_millions": 38.63,
+        "euros_par_habitant": 184.31
+      },
+      "Dépenses d'investissement": {
+        "montant_gfp": 84558618.3,
+        "montant_communes": 80122138.05,
+        "montant_consolide": 164476516.34,
+        "montant_millions": 164.48,
+        "euros_par_habitant": 784.74
+      },
+      "Capacité ou besoin de financement": {
+        "montant_gfp": -19223130.8,
+        "montant_communes": 7784195.17999998,
+        "montant_consolide": -11438935.62,
+        "montant_millions": -11.44,
+        "euros_par_habitant": -54.58
+      },
+      "Epargne nette": {
+        "montant_gfp": 13302418.46,
+        "montant_communes": 19796293.59,
+        "montant_consolide": 33098712.05,
+        "montant_millions": 33.1,
+        "euros_par_habitant": 157.92
+      },
+      "Recettes d'investissement": {
+        "montant_gfp": 59637692.08,
+        "montant_communes": 45763126.16,
+        "montant_consolide": 105196578.23,
+        "montant_millions": 105.2,
+        "euros_par_habitant": 501.91
+      },
+      "Epargne brute": {
+        "montant_gfp": 24261446.94,
+        "montant_communes": 40103920.84,
+        "montant_consolide": 64365367.78,
+        "montant_millions": 64.37,
+        "euros_par_habitant": 307.1
+      },
+      "Recettes de fonctionnement": {
+        "montant_gfp": 160521328.45,
+        "montant_communes": 322918747.29,
+        "montant_consolide": 481404575.74,
+        "montant_millions": 481.4,
+        "euros_par_habitant": 2296.85
+      },
+      "Dotation globale de fonctionnement": {
+        "montant_gfp": 10324305.0,
+        "montant_communes": 47932506.0,
+        "montant_consolide": 58256811.0,
+        "montant_millions": 58.26,
+        "euros_par_habitant": 277.95
+      },
+      "Dépenses de fonctionnement": {
+        "montant_gfp": 136259881.51,
+        "montant_communes": 282814826.45,
+        "montant_consolide": 417039207.96,
+        "montant_millions": 417.04,
+        "euros_par_habitant": 1989.76
+      },
+      "Dépenses d'équipement": {
+        "montant_gfp": 72874134.79,
+        "montant_communes": 52414572.69,
+        "montant_consolide": 125288707.48,
+        "montant_millions": 125.29,
+        "euros_par_habitant": 597.77
+      }
+    },
+    "2020": {
+      "Versement transport": {
+        "montant_gfp": 36745029.68,
+        "montant_communes": 0.0,
+        "montant_consolide": 36745029.68,
+        "montant_millions": 36.75,
+        "euros_par_habitant": 177.3
+      },
+      "Epargne brute": {
+        "montant_gfp": 27301897.98,
+        "montant_communes": 28026594.08,
+        "montant_consolide": 55328492.06,
+        "montant_millions": 55.33,
+        "euros_par_habitant": 266.97
+      },
+      "Recettes de fonctionnement": {
+        "montant_gfp": 152356843.92,
+        "montant_communes": 306167275.4,
+        "montant_consolide": 456041640.72,
+        "montant_millions": 456.04,
+        "euros_par_habitant": 2200.47
+      },
+      "Encours de dette": {
+        "montant_gfp": 124183104.12,
+        "montant_communes": 291195919.67,
+        "montant_consolide": 415379023.79,
+        "montant_millions": 415.38,
+        "euros_par_habitant": 2004.27
+      },
+      "Frais de personnel": {
+        "montant_gfp": 22424498.96,
+        "montant_communes": 164903054.46,
+        "montant_consolide": 186299774.82,
+        "montant_millions": 186.3,
+        "euros_par_habitant": 898.93
+      },
+      "Impôts et taxes": {
+        "montant_gfp": 106280506.97,
+        "montant_communes": 229972581.91,
+        "montant_consolide": 336253088.88,
+        "montant_millions": 336.25,
+        "euros_par_habitant": 1622.48
+      },
+      "Capacité ou besoin de financement": {
+        "montant_gfp": -20478033.47,
+        "montant_communes": 2969941.48000003,
+        "montant_consolide": -17508091.99,
+        "montant_millions": -17.51,
+        "euros_par_habitant": -84.48
+      },
+      "Dépenses de fonctionnement": {
+        "montant_gfp": 125054945.94,
+        "montant_communes": 278140681.32,
+        "montant_consolide": 400713148.66,
+        "montant_millions": 400.71,
+        "euros_par_habitant": 1933.51
+      },
+      "Epargne de gestion": {
+        "montant_gfp": 28617068.01,
+        "montant_communes": 31939283.68,
+        "montant_consolide": 60556351.69,
+        "montant_millions": 60.56,
+        "euros_par_habitant": 292.19
+      },
+      "Fonds de roulement": {
+        "montant_gfp": 11461104.03,
+        "montant_communes": 31108613.32,
+        "montant_consolide": 42569717.35,
+        "montant_millions": 42.57,
+        "euros_par_habitant": 205.41
+      },
+      "Achats et charges externes": {
+        "montant_gfp": 76967711.18,
+        "montant_communes": 52505452.77,
+        "montant_consolide": 129130463.95,
+        "montant_millions": 129.13,
+        "euros_par_habitant": 623.08
+      },
+      "Dépenses d'équipement": {
+        "montant_gfp": 62963965.14,
+        "montant_communes": 51397571.46,
+        "montant_consolide": 114361536.6,
+        "montant_millions": 114.36,
+        "euros_par_habitant": 551.81
+      },
+      "Annuité de la dette": {
+        "montant_gfp": 12184625.23,
+        "montant_communes": 25529975.64,
+        "montant_consolide": 37714600.87,
+        "montant_millions": 37.71,
+        "euros_par_habitant": 181.98
+      },
+      "Dépenses d'investissement": {
+        "montant_gfp": 74388668.88,
+        "montant_communes": 74670868.46,
+        "montant_consolide": 148254777.35,
+        "montant_millions": 148.25,
+        "euros_par_habitant": 715.35
+      },
+      "Epargne nette": {
+        "montant_gfp": 17140259.79,
+        "montant_communes": 7492328.06000001,
+        "montant_consolide": 24632587.85,
+        "montant_millions": 24.63,
+        "euros_par_habitant": 118.86
+      },
+      "Recettes d'investissement": {
+        "montant_gfp": 46266108.91,
+        "montant_communes": 48212885.88,
+        "montant_consolide": 93674234.8,
+        "montant_millions": 93.67,
+        "euros_par_habitant": 451.99
+      },
+      "Dotation globale de fonctionnement": {
+        "montant_gfp": 10162362.0,
+        "montant_communes": 44953056.0,
+        "montant_consolide": 55115418.0,
+        "montant_millions": 55.12,
+        "euros_par_habitant": 265.94
+      }
+    },
+    "2019": {
+      "Achats et charges externes": {
+        "montant_gfp": 75673989.84,
+        "montant_communes": 52989421.74,
+        "montant_consolide": 128323411.58,
+        "montant_millions": 128.32,
+        "euros_par_habitant": 621.78
+      },
+      "Frais de personnel": {
+        "montant_gfp": 21718632.97,
+        "montant_communes": 168182811.68,
+        "montant_consolide": 188258147.83,
+        "montant_millions": 188.26,
+        "euros_par_habitant": 912.19
+      },
+      "Dépenses d'investissement": {
+        "montant_gfp": 44954202.97,
+        "montant_communes": 88933820.83,
+        "montant_consolide": 133754626.39,
+        "montant_millions": 133.75,
+        "euros_par_habitant": 648.1
+      },
+      "Recettes d'investissement": {
+        "montant_gfp": 15234471.98,
+        "montant_communes": 63063433.23,
+        "montant_consolide": 78164507.8,
+        "montant_millions": 78.16,
+        "euros_par_habitant": 378.74
+      },
+      "Encours de dette": {
+        "montant_gfp": 104525732.64,
+        "montant_communes": 292597249.65,
+        "montant_consolide": 397122982.29,
+        "montant_millions": 397.12,
+        "euros_par_habitant": 1924.22
+      },
+      "Epargne nette": {
+        "montant_gfp": 10621668.36,
+        "montant_communes": 8834453.42,
+        "montant_consolide": 19456121.78,
+        "montant_millions": 19.46,
+        "euros_par_habitant": 94.27
+      },
+      "Epargne brute": {
+        "montant_gfp": 19981928.29,
+        "montant_communes": 30446664.83,
+        "montant_consolide": 50428593.12,
+        "montant_millions": 50.43,
+        "euros_par_habitant": 244.35
+      },
+      "Recettes de fonctionnement": {
+        "montant_gfp": 141841719.79,
+        "montant_communes": 313625297.4,
+        "montant_consolide": 452505140.37,
+        "montant_millions": 452.51,
+        "euros_par_habitant": 2192.57
+      },
+      "Fonds de roulement": {
+        "montant_gfp": 12281766.02,
+        "montant_communes": 29540001.82,
+        "montant_consolide": 41821767.84,
+        "montant_millions": 41.82,
+        "euros_par_habitant": 202.64
+      },
+      "Versement transport": {
+        "montant_gfp": 36647835.98,
+        "montant_communes": 0.0,
+        "montant_consolide": 36647835.98,
+        "montant_millions": 36.65,
+        "euros_par_habitant": 177.57
+      },
+      "Epargne de gestion": {
+        "montant_gfp": 21970983.56,
+        "montant_communes": 37195066.79,
+        "montant_consolide": 59166050.35,
+        "montant_millions": 59.17,
+        "euros_par_habitant": 286.68
+      },
+      "Annuité de la dette": {
+        "montant_gfp": 11532991.86,
+        "montant_communes": 27510050.3,
+        "montant_consolide": 39043042.16,
+        "montant_millions": 39.04,
+        "euros_par_habitant": 189.18
+      },
+      "Impôts et taxes": {
+        "montant_gfp": 104666610.99,
+        "montant_communes": 227608301.71,
+        "montant_consolide": 332274912.7,
+        "montant_millions": 332.27,
+        "euros_par_habitant": 1610.01
+      },
+      "Capacité ou besoin de financement": {
+        "montant_gfp": -6386542.77000002,
+        "montant_communes": -9120005.87999998,
+        "montant_consolide": -15506548.65,
+        "montant_millions": -15.51,
+        "euros_par_habitant": -75.14
+      },
+      "Dépenses de fonctionnement": {
+        "montant_gfp": 121859791.5,
+        "montant_communes": 283178632.57,
+        "montant_consolide": 402076547.25,
+        "montant_millions": 402.08,
+        "euros_par_habitant": 1948.22
+      },
+      "Dépenses d'équipement": {
+        "montant_gfp": 35334820.92,
+        "montant_communes": 58645390.49,
+        "montant_consolide": 93980211.41,
+        "montant_millions": 93.98,
+        "euros_par_habitant": 455.37
+      },
+      "Dotation globale de fonctionnement": {
+        "montant_gfp": 10040413.0,
+        "montant_communes": 42995707.0,
+        "montant_consolide": 53036120.0,
+        "montant_millions": 53.04,
+        "euros_par_habitant": 256.98
+      }
+    },
+    "2018": {
+      "Impôts et taxes": {
+        "montant_gfp": 104413869.35,
+        "montant_communes": 224522821.93,
+        "montant_consolide": 328936691.28,
+        "montant_millions": 328.94,
+        "euros_par_habitant": 1603.19
+      },
+      "Encours de dette": {
+        "montant_gfp": 107876992.57,
+        "montant_communes": 278830411.97,
+        "montant_consolide": 386707404.54,
+        "montant_millions": 386.71,
+        "euros_par_habitant": 1884.76
+      },
+      "Dépenses d'équipement": {
+        "montant_gfp": 28914228.82,
+        "montant_communes": 57935535.32,
+        "montant_consolide": 86849764.14,
+        "montant_millions": 86.85,
+        "euros_par_habitant": 423.29
+      },
+      "Versement transport": {
+        "montant_gfp": 37950999.01,
+        "montant_communes": 0.0,
+        "montant_consolide": 37950999.01,
+        "montant_millions": 37.95,
+        "euros_par_habitant": 184.97
+      },
+      "Annuité de la dette": {
+        "montant_gfp": 11444546.55,
+        "montant_communes": 26032991.05,
+        "montant_consolide": 37477537.6,
+        "montant_millions": 37.48,
+        "euros_par_habitant": 182.66
+      },
+      "Recettes de fonctionnement": {
+        "montant_gfp": 143754775.08,
+        "montant_communes": 309372434.43,
+        "montant_consolide": 450269905.22,
+        "montant_millions": 450.27,
+        "euros_par_habitant": 2194.55
+      },
+      "Frais de personnel": {
+        "montant_gfp": 21353761.34,
+        "montant_communes": 168718011.42,
+        "montant_consolide": 188557973.47,
+        "montant_millions": 188.56,
+        "euros_par_habitant": 919.01
+      },
+      "Achats et charges externes": {
+        "montant_gfp": 78546138.55,
+        "montant_communes": 51260216.74,
+        "montant_consolide": 129466355.29,
+        "montant_millions": 129.47,
+        "euros_par_habitant": 631.0
+      },
+      "Capacité ou besoin de financement": {
+        "montant_gfp": -406968.730000002,
+        "montant_communes": 175543.549999981,
+        "montant_consolide": -231425.180000021,
+        "montant_millions": -0.23,
+        "euros_par_habitant": -1.13
+      },
+      "Recettes d'investissement": {
+        "montant_gfp": 32614754.12,
+        "montant_communes": 55643521.7,
+        "montant_consolide": 88258275.82,
+        "montant_millions": 88.26,
+        "euros_par_habitant": 430.16
+      },
+      "Dotation globale de fonctionnement": {
+        "montant_gfp": 9980986.0,
+        "montant_communes": 42214515.0,
+        "montant_consolide": 52195501.0,
+        "montant_millions": 52.2,
+        "euros_par_habitant": 254.39
+      },
+      "Epargne brute": {
+        "montant_gfp": 20100333.21,
+        "montant_communes": 28772240.46,
+        "montant_consolide": 48872573.67,
+        "montant_millions": 48.87,
+        "euros_par_habitant": 238.2
+      },
+      "Fonds de roulement": {
+        "montant_gfp": 22019568.72,
+        "montant_communes": 24964186.99,
+        "montant_consolide": 46983755.71,
+        "montant_millions": 46.98,
+        "euros_par_habitant": 228.99
+      },
+      "Epargne de gestion": {
+        "montant_gfp": 22347757.7,
+        "montant_communes": 36361376.36,
+        "montant_consolide": 58709134.06,
+        "montant_millions": 58.71,
+        "euros_par_habitant": 286.14
+      },
+      "Dépenses de fonctionnement": {
+        "montant_gfp": 123654441.87,
+        "montant_communes": 280600193.97,
+        "montant_consolide": 401397331.55,
+        "montant_millions": 401.4,
+        "euros_par_habitant": 1956.36
+      },
+      "Dépenses d'investissement": {
+        "montant_gfp": 38924974.09,
+        "montant_communes": 80953637.41,
+        "montant_consolide": 119878611.5,
+        "montant_millions": 119.88,
+        "euros_par_habitant": 584.27
+      },
+      "Epargne nette": {
+        "montant_gfp": 10895715.18,
+        "montant_communes": 8926322.65999999,
+        "montant_consolide": 19822037.84,
+        "montant_millions": 19.82,
+        "euros_par_habitant": 96.61
+      }
+    }
+  }
+}
