@@ -1,6 +1,9 @@
 <div align="center">
+
 ## 🎯 Cinor Monitor
+
 </div>
+
 [![Stars](https://img.shields.io/github/stars/gunout/cinor-monitor?style=for-the-badge&logo=github&color=yellow)](https://github.com/gunout/cinor-monitor/stargazers)
 [![Forks](https://img.shields.io/github/forks/gunout/cinor-monitor?style=for-the-badge&logo=github&color=blue)](https://github.com/gunout/cinor-monitor/network/members)
 [![Issues](https://img.shields.io/github/issues/gunout/cinor-monitor?style=for-the-badge&logo=github&color=red)](https://github.com/gunout/cinor-monitor/issues)
@@ -94,11 +97,13 @@ Les contributions sont les bienvenues !
 📄 Licence
 
 Ce projet est distribué sous licence MIT. Voir le fichier LICENSE pour plus d'informations.
+
+<div align="center">
+
 👤 Auteur
 
 gunout — @gunout
 
-<div align="center">
 
 ⭐ Si ce projet vous est utile, n'hésitez pas à lui donner une étoile ! ⭐
 </div> ```
