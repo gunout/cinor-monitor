@@ -1,0 +1,52 @@
+{
+  "caf": {
+    "file": "caf.json",
+    "type": "array",
+    "count": 419
+  },
+  "emploi": {
+    "file": "emploi.json",
+    "type": "array",
+    "count": 103
+  },
+  "sante": {
+    "file": "sante.json",
+    "type": "array",
+    "count": 102
+  },
+  "sports": {
+    "file": "sports.json",
+    "type": "array",
+    "count": 700
+  },
+  "permis": {
+    "file": "permis.json",
+    "type": "array",
+    "count": 3243
+  },
+  "routes": {
+    "file": "routes.json",
+    "type": "array",
+    "count": 71
+  },
+  "stops": {
+    "file": "stops.json",
+    "type": "array",
+    "count": 1618
+  },
+  "shapes": {
+    "file": "shapes.json",
+    "type": "object",
+    "count": 50
+  },
+  "stats": {
+    "file": "stats.json",
+    "type": "object",
+    "count": 3
+  },
+  "meta": {
+    "file": "meta.json",
+    "type": "object",
+    "count": 5
+  }
+}
